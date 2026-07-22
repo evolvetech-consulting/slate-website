@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#08090b">
+<title>Slate — Admin</title>
+<style>
+  :root {
+    color-scheme: dark light;
+    --bg: #08090b; --panel: #16191f; --panel-2: #1d212a; --ink: #f4f6f9; --muted: #99a2ad; --faint: #6b7480;
+    --line: rgba(255,255,255,0.10); --line-strong: rgba(255,255,255,0.16);
+    --accent: #5b93f3; --accent-2: #9cc0ff; --accent-ink: #fff; --good: #34d364; --warn: #ffd60a; --bad: #ff5a4d;
+    --shadow-soft: 0 24px 60px rgba(0,0,0,0.45);
+    --glow: radial-gradient(60% 60% at 50% 0%, rgba(91,147,243,0.28), transparent 70%);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fbfbfd; --panel: #ffffff; --panel-2: #f4f6f9; --ink: #15181d; --muted: #5a636e; --faint: #8a929c;
+      --line: rgba(0,0,0,0.08); --line-strong: rgba(0,0,0,0.12);
+      --accent: #0a67dd; --accent-2: #5b93f3; --good: #1e9e4a; --warn: #c98a00; --bad: #e0392b;
+      --shadow-soft: 0 24px 55px rgba(20,30,55,0.14);
+      --glow: radial-gradient(60% 60% at 50% 0%, rgba(10,103,221,0.14), transparent 70%);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased; min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  .glow { position: fixed; inset: -10% -20% auto -20%; height: 520px; background: var(--glow); pointer-events: none; z-index: 0; }
+  .wrap { width: min(1040px, 94vw); margin: 0 auto; position: relative; z-index: 1; }
+
+  .brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.05rem; padding: 1.5rem 0 0; }
+  .brand .mark { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; background: linear-gradient(150deg, var(--accent), var(--accent-2)); box-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 45%, transparent); }
+  .brand .mark::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: #fff; opacity: 0.95; }
+  .brand .tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius: 999px; padding: 0.15rem 0.55rem; margin-left: 0.2rem; }
+
+  /* login */
+  .login { max-width: 380px; margin: 12vh auto 0; background: var(--panel); border: 1px solid var(--line-strong); border-radius: 18px; box-shadow: var(--shadow-soft); padding: 1.8rem; }
+  .login h1 { font-size: 1.35rem; margin: 0 0 0.3rem; }
+  .lead { color: var(--muted); font-size: 0.9rem; line-height: 1.5; margin: 0 0 1.3rem; }
+  label { display: block; font-size: 0.78rem; color: var(--muted); margin: 0 0 0.35rem; }
+  input { width: 100%; font: inherit; font-size: 0.95rem; color: var(--ink); background: color-mix(in srgb, var(--ink) 4%, transparent); border: 1px solid var(--line-strong); border-radius: 11px; padding: 0.7rem 0.85rem; margin-bottom: 0.9rem; }
+  input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+  input.code { letter-spacing: 0.4em; text-align: center; font-size: 1.15rem; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; font: inherit; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none; border-radius: 11px; padding: 0.65rem 1.1rem; background: var(--accent); color: var(--accent-ink); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:disabled { opacity: 0.55; cursor: default; }
+  .btn.ghost { background: color-mix(in srgb, var(--ink) 9%, transparent); color: var(--ink); }
+  .btn.sm { font-size: 0.8rem; padding: 0.4rem 0.75rem; border-radius: 9px; }
+  .btn.block { width: 100%; }
+  .linkbtn { background: none; border: none; color: var(--accent); font: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; }
+  .msg { font-size: 0.82rem; margin-top: 0.6rem; min-height: 1.1em; }
+  .msg.err { color: var(--bad); } .msg.ok { color: var(--muted); }
+  .hidden { display: none !important; }
+
+  /* dashboard */
+  .head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin: 1.4rem 0 1rem; }
+  .head h1 { font-size: 1.5rem; margin: 0; }
+  .head .sub { color: var(--faint); font-size: 0.82rem; margin-top: 0.15rem; }
+  .toolbar { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+  .search { margin: 0; width: 240px; }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.7rem; margin-bottom: 1.1rem; }
+  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 0.85rem 1rem; }
+  .kpi .k { font-size: 0.74rem; color: var(--muted); }
+  .kpi .v { font-size: 1.5rem; font-weight: 700; margin-top: 0.1rem; font-variant-numeric: tabular-nums; }
+
+  .table-wrap { background: var(--panel); border: 1px solid var(--line-strong); border-radius: 16px; box-shadow: var(--shadow-soft); overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 720px; }
+  th, td { text-align: left; padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--faint); font-weight: 600; position: sticky; top: 0; background: var(--panel); }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: color-mix(in srgb, var(--ink) 3%, transparent); }
+  td.email { font-weight: 500; }
+  td.num { font-variant-numeric: tabular-nums; }
+  .pill { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; border-radius: 999px; padding: 0.18rem 0.55rem; }
+  .pill.active { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+  .pill.trial { color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+  .pill.off { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); }
+  .plan-badge { font-weight: 600; }
+  .slink { color: var(--accent); font-weight: 600; font-size: 0.82rem; }
+  .empty { padding: 2rem; text-align: center; color: var(--faint); }
+  footer { padding: 1.6rem 0 2rem; text-align: center; color: var(--faint); font-size: 0.78rem; position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <a class="brand" href="/"><span class="mark"></span> Slate <span class="tag">Admin</span></a>
+
+    <!-- ===== LOGIN ===== -->
+    <div id="login" class="login hidden">
+      <div id="stepEmail">
+        <h1>Admin sign in</h1>
+        <p class="lead">Enter your admin email — we'll send a 6‑digit code.</p>
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" placeholder="you@evolvetech-consulting.com" />
+        <button class="btn block" id="btnSend">Send code</button>
+        <div class="msg" id="msgEmail"></div>
+      </div>
+      <div id="stepCode" class="hidden">
+        <h1>Enter your code</h1>
+        <p class="lead">Code sent to <b id="codeEmail"></b>.</p>
+        <label for="code">Code</label>
+        <input id="code" class="code" inputmode="numeric" autocomplete="one-time-code" placeholder="000000" />
+        <button class="btn block" id="btnVerify">Verify &amp; continue</button>
+        <div style="text-align:center;margin-top:0.7rem;"><button class="linkbtn" id="btnBack">← use a different email</button></div>
+        <div class="msg" id="msgCode"></div>
+      </div>
+    </div>
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="dash" class="hidden">
+      <div class="head">
+        <div>
+          <h1>Customers</h1>
+          <div class="sub" id="asOf"></div>
+        </div>
+        <div class="toolbar">
+          <input class="search" id="search" type="search" placeholder="Search email…" />
+          <button class="btn ghost sm" id="btnRefresh">Refresh</button>
+          <button class="btn ghost sm" id="btnSignout">Sign out</button>
+        </div>
+      </div>
+
+      <div class="kpis" id="kpis"></div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Email</th><th>Plan</th><th>Status</th><th>Invoices (mo.)</th><th>Renews / until</th><th>Updated</th><th>Stripe</th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div class="empty hidden" id="empty">No customers yet.</div>
+      </div>
+    </div>
+
+    <div id="loading" class="hidden"><p class="lead" style="text-align:center;margin:14vh 0;">Loading…</p></div>
+  </div>
+
+  <footer>Slate · admin</footer>
+
+<script>
+  var SUPABASE_URL = "https://mefncbfhuaqanqpwigrq.supabase.co";
+  var ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1lZm5jYmZodWFxYW5xcHdpZ3JxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2MDExMTAsImV4cCI6MjEwMDE3NzExMH0.7F2CJ_V9nagYEqu6gzuVzPJ6mREdTjh8qAHhYyCYKxc";
+  var STRIPE_CUSTOMER_BASE = "https://dashboard.stripe.com/test/customers/"; // ← quitar "test/" en live
+  var LS = "slate_admin_refresh";
+  var LIMITS = { starter: { invoices: 150, inboxes: 1 }, pro: { invoices: null, inboxes: 5 }, team: { invoices: null, inboxes: null } };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var accessToken = null, currentEmail = "", allRows = [];
+
+  function show(which) { ["login", "dash", "loading"].forEach(function (id) { $(id).classList.toggle("hidden", id !== which); }); }
+  function showStep(s) { $("stepEmail").classList.toggle("hidden", s !== "email"); $("stepCode").classList.toggle("hidden", s !== "code"); }
+  function h(x) { return Object.assign({ apikey: ANON, "Content-Type": "application/json" }, x || {}); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
+  function cap(s) { return (s || "").charAt(0).toUpperCase() + (s || "").slice(1); }
+  function monthNow() { return new Date().toISOString().slice(0, 7); }
+  function fmtDate(iso) { if (!iso) return "—"; var d = new Date(iso); return isNaN(d) ? "—" : d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }); }
+
+  async function friendly(r) { try { var j = await r.json(); return j.msg || j.error_description || j.error || ("Error " + r.status); } catch (e) { return "Error " + r.status; } }
+  async function sendCode(email) { var r = await fetch(SUPABASE_URL + "/auth/v1/otp", { method: "POST", headers: h(), body: JSON.stringify({ email: email, create_user: true }) }); if (!r.ok) throw new Error(await friendly(r)); }
+  async function verifyCode(email, code) { var r = await fetch(SUPABASE_URL + "/auth/v1/verify", { method: "POST", headers: h(), body: JSON.stringify({ type: "email", email: email, token: code }) }); if (!r.ok) throw new Error(await friendly(r)); return r.json(); }
+  async function refresh() {
+    var rt = localStorage.getItem(LS); if (!rt) return false;
+    var r = await fetch(SUPABASE_URL + "/auth/v1/token?grant_type=refresh_token", { method: "POST", headers: h(), body: JSON.stringify({ refresh_token: rt }) });
+    if (!r.ok) { localStorage.removeItem(LS); return false; }
+    var s = await r.json(); accessToken = s.access_token; if (s.refresh_token) localStorage.setItem(LS, s.refresh_token); return true;
+  }
+  async function fetchAccounts() {
+    try {
+      var r = await fetch(SUPABASE_URL + "/functions/v1/admin-accounts", { headers: { apikey: ANON, Authorization: "Bearer " + accessToken } });
+      return { status: r.status, body: await r.json().catch(function () { return {}; }) };
+    } catch (e) { return { status: 0, body: {} }; }
+  }
+
+  function usageOf(a) {
+    var lim = (LIMITS[a.plan] || LIMITS.pro).invoices;
+    var used = (a.usage_month === monthNow()) ? (a.invoices_used || 0) : 0; // reset perezoso: mes viejo = 0
+    return { used: used, limit: lim };
+  }
+  function statusPill(s) {
+    var cls = s === "trialing" ? "trial" : (s === "active" ? "active" : "off");
+    var label = s === "trialing" ? "Trial" : cap(s || "—");
+    return '<span class="pill ' + cls + '">' + esc(label) + '</span>';
+  }
+
+  function render() {
+    var q = $("search").value.trim().toLowerCase();
+    var rows = allRows.filter(function (a) { return !q || (a.email || "").toLowerCase().indexOf(q) >= 0; });
+
+    // KPIs
+    var active = allRows.filter(function (a) { return a.status === "active" || a.status === "trialing"; }).length;
+    var byPlan = { starter: 0, pro: 0, team: 0 };
+    allRows.forEach(function (a) { if (byPlan[a.plan] != null) byPlan[a.plan]++; });
+    $("kpis").innerHTML =
+      kpi("Total customers", allRows.length) + kpi("Active", active) +
+      kpi("Starter", byPlan.starter) + kpi("Pro", byPlan.pro) + kpi("Team", byPlan.team);
+
+    // rows
+    if (!rows.length) { $("rows").innerHTML = ""; $("empty").classList.remove("hidden"); $("empty").textContent = allRows.length ? "No matches." : "No customers yet."; }
+    else {
+      $("empty").classList.add("hidden");
+      $("rows").innerHTML = rows.map(function (a) {
+        var u = usageOf(a);
+        var usage = u.limit == null ? (u.used + " · unlimited") : (u.used + " / " + u.limit);
+        var link = a.stripe_customer_id ? '<a class="slink" href="' + STRIPE_CUSTOMER_BASE + esc(a.stripe_customer_id) + '" target="_blank" rel="noopener">Open ↗</a>' : "—";
+        return "<tr>" +
+          '<td class="email">' + esc(a.email) + "</td>" +
+          '<td class="plan-badge">' + esc(cap(a.plan)) + "</td>" +
+          "<td>" + statusPill(a.status) + "</td>" +
+          '<td class="num">' + usage + "</td>" +
+          "<td>" + fmtDate(a.current_period_end) + "</td>" +
+          "<td>" + fmtDate(a.updated_at) + "</td>" +
+          "<td>" + link + "</td>" +
+          "</tr>";
+      }).join("");
+    }
+  }
+  function kpi(k, v) { return '<div class="kpi"><div class="k">' + k + '</div><div class="v">' + v + "</div></div>"; }
+
+  async function load() {
+    show("loading");
+    var res = await fetchAccounts();
+    if (res.status === 401 && (await refresh())) res = await fetchAccounts();
+    if (res.status === 200) {
+      allRows = res.body.accounts || [];
+      $("asOf").textContent = "As of " + new Date().toLocaleString();
+      render(); show("dash"); return;
+    }
+    if (res.status === 403) {
+      show("login"); showStep("email");
+      $("msgEmail").className = "msg err";
+      $("msgEmail").textContent = "This account isn't an admin.";
+      localStorage.removeItem(LS); return;
+    }
+    show("login"); showStep("email");
+  }
+
+  // events
+  $("btnSend").addEventListener("click", async function () {
+    var email = $("email").value.trim().toLowerCase();
+    if (!/.+@.+\..+/.test(email)) { $("msgEmail").className = "msg err"; $("msgEmail").textContent = "Enter a valid email."; return; }
+    $("btnSend").disabled = true; $("msgEmail").className = "msg ok"; $("msgEmail").textContent = "Sending code…";
+    try { await sendCode(email); currentEmail = email; $("codeEmail").textContent = email; showStep("code"); $("code").focus(); $("msgCode").className = "msg ok"; $("msgCode").textContent = "Check your email."; }
+    catch (e) { $("msgEmail").className = "msg err"; $("msgEmail").textContent = "❌ " + e.message; }
+    $("btnSend").disabled = false;
+  });
+  $("email").addEventListener("keydown", function (e) { if (e.key === "Enter") $("btnSend").click(); });
+  $("btnVerify").addEventListener("click", async function () {
+    var code = $("code").value.trim(); if (!code) { $("msgCode").className = "msg err"; $("msgCode").textContent = "Enter the code."; return; }
+    $("btnVerify").disabled = true; $("msgCode").className = "msg ok"; $("msgCode").textContent = "Verifying…";
+    try { var s = await verifyCode(currentEmail, code); accessToken = s.access_token; if (s.refresh_token) localStorage.setItem(LS, s.refresh_token); await load(); }
+    catch (e) { $("msgCode").className = "msg err"; $("msgCode").textContent = "❌ " + e.message; $("btnVerify").disabled = false; }
+  });
+  $("code").addEventListener("keydown", function (e) { if (e.key === "Enter") $("btnVerify").click(); });
+  $("btnBack").addEventListener("click", function () { showStep("email"); $("code").value = ""; $("email").focus(); });
+  $("search").addEventListener("input", render);
+  $("btnRefresh").addEventListener("click", load);
+  $("btnSignout").addEventListener("click", function () { localStorage.removeItem(LS); accessToken = null; window.location.href = "/"; });
+
+  // on load
+  (async function () {
+    if (localStorage.getItem(LS)) { show("loading"); if (await refresh()) { await load(); return; } }
+    show("login"); showStep("email");
+  })();
+</script>
+</body>
+</html>
