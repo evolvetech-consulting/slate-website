@@ -311,6 +311,28 @@
   $("btnBack").addEventListener("click", function () {
     show("stepEmail"); $("code").value = ""; $("msgEmail").textContent = ""; $("email").focus();
   });
+  // Manage subscription → link DIRECTO al portal del cliente (1 click, sin email).
+  $("btnPortal").addEventListener("click", async function (e) {
+    e.preventDefault();
+    var btn = $("btnPortal"), label = btn.textContent;
+    btn.textContent = "Opening…"; btn.style.pointerEvents = "none";
+    async function call() {
+      return fetch(SUPABASE_URL + "/functions/v1/create-portal-session", {
+        method: "POST", headers: { apikey: ANON, Authorization: "Bearer " + accessToken },
+      });
+    }
+    try {
+      var r = await call();
+      if (r.status === 401 && (await refresh())) r = await call();
+      var j = await r.json().catch(function () { return {}; });
+      if (r.ok && j.url) { window.location.href = j.url; return; }
+      throw new Error(j.error || "portal");
+    } catch (err) {
+      window.open(PORTAL_URL, "_blank"); // fallback: login del portal por email
+    }
+    btn.textContent = label; btn.style.pointerEvents = "";
+  });
+
   $("btnSignout").addEventListener("click", function () {
     localStorage.removeItem(LS); accessToken = null; currentEmail = "";
     $("email").value = ""; $("code").value = ""; $("msgEmail").textContent = "";
