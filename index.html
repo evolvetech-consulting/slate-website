@@ -195,6 +195,12 @@
   .tag-btn { border-radius: 9px; padding: 0.45rem 0.9rem; font-size: 0.8rem; font-weight: 600; }
   .tag-btn.p { background: var(--accent); color: #fff; }
   .tag-btn.s { background: color-mix(in srgb, var(--ink) 9%, transparent); color: var(--ink); }
+  /* pills de acciones (Payment / PDF / Note) — verde = incluido */
+  .pills { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0.55rem 0 0.35rem; }
+  .pill { font-size: 0.74rem; font-weight: 600; border-radius: 999px; padding: 0.3rem 0.72rem; color: var(--good); border: 1px solid color-mix(in srgb, var(--good) 42%, transparent); background: color-mix(in srgb, var(--good) 13%, transparent); }
+  /* "File under: <categoría>" */
+  .fileunder { font-size: 0.77rem; color: var(--muted); margin: 0.45rem 0 0.15rem; }
+  .fileunder b { color: var(--ink); font-weight: 600; }
 
   /* telegram bubble */
   .tg { width: min(360px, 90vw); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 18px; box-shadow: var(--shadow-soft); overflow: hidden; }
@@ -465,6 +471,23 @@
       </div>
     </div>
   </div>
+
+  <div class="wrap feat reveal">
+    <div class="feat-copy">
+      <p class="eyebrow">Beyond the inbox</p>
+      <h2>Not everything<br>comes by email.</h2>
+      <p>A bill over WhatsApp, a handwritten crew pay sheet, a check — snap a photo and drop it in. Slate reads it, tells an invoice from a crew payment from a check, and files each in the right AccuLynx folder. Several stacked in one photo? It splits them out, one per job.</p>
+    </div>
+    <div class="feat-media">
+      <div class="card-mock">
+        <div class="ch">Crew payment · $2,110.00</div>
+        <div class="csub">Uploaded photo · Raymundo's Pay Sheet</div>
+        <div class="opt sel"><span class="dot"></span> #531 · Felipe Londono · 600 Oakmont Hill</div>
+        <div class="fileunder">File under: <b>Crew Payment</b></div>
+        <div class="row"><span class="tag-btn p">Loaded ✓</span></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ===================== SPOTLIGHT (command bar) ===================== -->
@@ -472,8 +495,8 @@
   <div class="wrap feat reveal">
     <div class="feat-copy">
       <p class="eyebrow">You're in control</p>
-      <h2>When it's not sure,<br>you just tell it.</h2>
-      <p>Pick the job from the list, then say what to do in plain English — “only the document, no note” or “skip the payment.” No forms, no fields to hunt for. Slate does exactly what you asked, and nothing you didn't.</p>
+      <h2>When it's not sure,<br>you decide.</h2>
+      <p>Pick the job from the list, then choose what to post — payment, PDF, note — with a tap. Splitting one bill across several jobs? Give each its own amount. Slate does exactly what you picked, and nothing you didn't.</p>
     </div>
     <div class="feat-media">
       <div class="card-mock">
@@ -481,7 +504,7 @@
         <div class="csub">Needs review — pick a job</div>
         <div class="opt"><span class="dot"></span> #519 · Riley Nyquist · 1656 Birch Lane</div>
         <div class="opt sel"><span class="dot"></span> #491 · Riley Nyquist · 1656 Birch Lane</div>
-        <div class="cmd">💬 <span class="ph">“only the document, no note”</span></div>
+        <div class="pills"><span class="pill">💳 Payment ✓</span><span class="pill">📎 PDF ✓</span><span class="pill">📝 Note ✓</span></div>
         <div class="row"><span class="tag-btn p">Resolve</span><span class="tag-btn s">Skip</span></div>
       </div>
     </div>
