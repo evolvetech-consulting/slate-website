@@ -335,8 +335,7 @@
 
   $("btnSignout").addEventListener("click", function () {
     localStorage.removeItem(LS); accessToken = null; currentEmail = "";
-    $("email").value = ""; $("code").value = ""; $("msgEmail").textContent = "";
-    show("stepEmail");
+    window.location.href = "/"; // volver al home de roofinvoice.com
   });
 
   // ---- On load: intentar sesión guardada ----
