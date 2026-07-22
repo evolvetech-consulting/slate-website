@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="Your Slate account — plan, usage and billing.">
+<meta name="theme-color" content="#08090b">
+<title>Slate — Your account</title>
+<style>
+  :root {
+    color-scheme: dark light;
+    --bg: #08090b; --panel: #16191f; --panel-2: #1d212a; --ink: #f4f6f9; --muted: #99a2ad; --faint: #6b7480;
+    --line: rgba(255,255,255,0.10); --line-strong: rgba(255,255,255,0.16);
+    --accent: #5b93f3; --accent-2: #9cc0ff; --accent-ink: #ffffff; --good: #34d364; --bad: #ff5a4d;
+    --shadow-soft: 0 24px 60px rgba(0,0,0,0.45);
+    --glow: radial-gradient(60% 60% at 50% 0%, rgba(91,147,243,0.28), transparent 70%);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fbfbfd; --panel: #ffffff; --panel-2: #f4f6f9; --ink: #15181d; --muted: #5a636e; --faint: #8a929c;
+      --line: rgba(0,0,0,0.08); --line-strong: rgba(0,0,0,0.12);
+      --accent: #0a67dd; --accent-2: #5b93f3; --good: #1e9e4a; --bad: #e0392b;
+      --shadow-soft: 0 24px 55px rgba(20,30,55,0.14);
+      --glow: radial-gradient(60% 60% at 50% 0%, rgba(10,103,221,0.14), transparent 70%);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  .glow { position: fixed; inset: -10% -20% auto -20%; height: 560px; background: var(--glow); pointer-events: none; z-index: 0; }
+  .wrap { width: min(460px, 92vw); margin: 0 auto; position: relative; z-index: 1; }
+
+  .top { padding: 1.6rem 0 0; }
+  .brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .brand .mark {
+    width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center;
+    background: linear-gradient(150deg, var(--accent), var(--accent-2));
+    box-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .brand .mark::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: #fff; opacity: 0.95; }
+
+  main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem 0 3rem; }
+  .card { width: 100%; background: var(--panel); border: 1px solid var(--line-strong); border-radius: 18px; box-shadow: var(--shadow-soft); padding: clamp(1.4rem, 5vw, 2.1rem); }
+
+  h1 { font-size: 1.5rem; letter-spacing: -0.02em; margin: 0 0 0.3rem; }
+  .lead { color: var(--muted); font-size: 0.92rem; line-height: 1.5; margin: 0 0 1.4rem; }
+
+  label { display: block; font-size: 0.78rem; color: var(--muted); margin: 0 0 0.35rem; font-weight: 500; }
+  input {
+    width: 100%; font: inherit; font-size: 0.95rem; color: var(--ink);
+    background: color-mix(in srgb, var(--ink) 4%, transparent); border: 1px solid var(--line-strong);
+    border-radius: 11px; padding: 0.7rem 0.85rem; margin-bottom: 0.9rem;
+  }
+  input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+  input.code { letter-spacing: 0.4em; font-size: 1.15rem; text-align: center; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; width: 100%;
+    font: inherit; font-size: 0.98rem; font-weight: 600; cursor: pointer; border: none; border-radius: 12px;
+    padding: 0.75rem 1.2rem; background: var(--accent); color: var(--accent-ink);
+    box-shadow: 0 10px 26px color-mix(in srgb, var(--accent) 32%, transparent);
+    transition: filter .15s ease, transform .05s ease;
+  }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled { opacity: 0.55; cursor: default; box-shadow: none; }
+  .btn.ghost { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); box-shadow: none; }
+  .linkbtn { background: none; border: none; color: var(--accent); font: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; padding: 0.4rem; }
+  .msg { font-size: 0.82rem; margin-top: 0.7rem; min-height: 1.1em; }
+  .msg.err { color: var(--bad); }
+  .msg.ok { color: var(--muted); }
+  .hidden { display: none !important; }
+
+  /* dashboard */
+  .acct-head { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 1.2rem; }
+  .acct-email { font-size: 0.82rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .badge { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; padding: 0.22rem 0.6rem; color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); border: 1px solid color-mix(in srgb, var(--good) 40%, transparent); }
+  .badge.off { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); border-color: color-mix(in srgb, var(--bad) 40%, transparent); }
+
+  .plan-name { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+  .plan-name .grad { background: linear-gradient(105deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .plan-sub { color: var(--faint); font-size: 0.82rem; margin: 0.15rem 0 1.3rem; }
+
+  .stat { border: 1px solid var(--line); background: var(--panel-2); border-radius: 12px; padding: 0.9rem 1rem; margin-bottom: 0.7rem; }
+  .stat .k { font-size: 0.76rem; color: var(--muted); }
+  .stat .v { font-size: 1.05rem; font-weight: 600; margin-top: 0.15rem; font-variant-numeric: tabular-nums; }
+  .bar { height: 7px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 10%, transparent); margin-top: 0.55rem; overflow: hidden; }
+  .bar > i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+  .actions { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
+  .foot { text-align: center; margin-top: 1rem; }
+
+  footer { padding: 1.4rem 0 2rem; text-align: center; color: var(--faint); font-size: 0.8rem; position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <div class="top wrap">
+    <a class="brand" href="/"><span class="mark"></span> Slate</a>
+  </div>
+
+  <main>
+    <div class="wrap">
+      <div class="card">
+
+        <!-- ===== LOGIN: email ===== -->
+        <div id="stepEmail">
+          <h1>Your account</h1>
+          <p class="lead">Sign in with the email you subscribed with — we'll send you a 6‑digit code. No password needed.</p>
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" placeholder="you@company.com" />
+          <button class="btn" id="btnSend">Send code</button>
+          <div class="msg" id="msgEmail"></div>
+        </div>
+
+        <!-- ===== LOGIN: code ===== -->
+        <div id="stepCode" class="hidden">
+          <h1>Enter your code</h1>
+          <p class="lead">We emailed a 6‑digit code to <b id="codeEmail"></b>.</p>
+          <label for="code">Code</label>
+          <input id="code" class="code" inputmode="numeric" autocomplete="one-time-code" placeholder="000000" />
+          <button class="btn" id="btnVerify">Verify &amp; continue</button>
+          <div class="foot"><button class="linkbtn" id="btnBack">← use a different email</button></div>
+          <div class="msg" id="msgCode"></div>
+        </div>
+
+        <!-- ===== DASHBOARD ===== -->
+        <div id="dash" class="hidden">
+          <div class="acct-head">
+            <span class="acct-email" id="dashEmail"></span>
+            <span class="badge" id="dashBadge">Active</span>
+          </div>
+          <p class="plan-name">Slate <span class="grad" id="dashPlan">Pro</span></p>
+          <p class="plan-sub" id="dashRenew"></p>
+
+          <div class="stat">
+            <div class="k">Invoices this month</div>
+            <div class="v" id="dashUsage">—</div>
+            <div class="bar hidden" id="dashBar"><i style="width:0%"></i></div>
+          </div>
+          <div class="stat">
+            <div class="k">Connected inboxes</div>
+            <div class="v" id="dashInboxes">—</div>
+          </div>
+
+          <div class="actions">
+            <a class="btn" id="btnPortal" target="_blank" rel="noopener">Manage subscription</a>
+            <button class="btn ghost" id="btnSignout">Sign out</button>
+          </div>
+          <p class="plan-sub" style="text-align:center;margin-top:1rem;">Upgrade, change your card, download receipts or cancel — all in the billing portal.</p>
+        </div>
+
+        <!-- ===== LOADING ===== -->
+        <div id="loading" class="hidden">
+          <p class="lead" style="text-align:center;margin:1rem 0;">Loading your account…</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>Slate · roofinvoice.com</footer>
+
+<script>
+  var SUPABASE_URL = "https://mefncbfhuaqanqpwigrq.supabase.co";
+  var ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1lZm5jYmZodWFxYW5xcHdpZ3JxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2MDExMTAsImV4cCI6MjEwMDE3NzExMH0.7F2CJ_V9nagYEqu6gzuVzPJ6mREdTjh8qAHhYyCYKxc";
+  var PORTAL_URL = "https://billing.stripe.com/p/login/test_00w6oG6aJfJc4tH3Lq2ZO00";
+  var LS = "slate_refresh";
+
+  var $ = function (id) { return document.getElementById(id); };
+  var accessToken = null;
+  var currentEmail = "";
+
+  function show(which) {
+    ["stepEmail", "stepCode", "dash", "loading"].forEach(function (id) {
+      $(id).classList.toggle("hidden", id !== which);
+    });
+  }
+  function h(headers) { return Object.assign({ apikey: ANON, "Content-Type": "application/json" }, headers || {}); }
+
+  // ---- Auth ----
+  async function sendCode(email) {
+    var r = await fetch(SUPABASE_URL + "/auth/v1/otp", {
+      method: "POST", headers: h(), body: JSON.stringify({ email: email, create_user: true }),
+    });
+    if (!r.ok) throw new Error(await friendly(r));
+  }
+  async function verifyCode(email, code) {
+    var r = await fetch(SUPABASE_URL + "/auth/v1/verify", {
+      method: "POST", headers: h(), body: JSON.stringify({ type: "email", email: email, token: code }),
+    });
+    if (!r.ok) throw new Error(await friendly(r));
+    return r.json();
+  }
+  async function refresh() {
+    var rt = localStorage.getItem(LS);
+    if (!rt) return false;
+    var r = await fetch(SUPABASE_URL + "/auth/v1/token?grant_type=refresh_token", {
+      method: "POST", headers: h(), body: JSON.stringify({ refresh_token: rt }),
+    });
+    if (!r.ok) { localStorage.removeItem(LS); return false; }
+    var s = await r.json();
+    accessToken = s.access_token;
+    if (s.refresh_token) localStorage.setItem(LS, s.refresh_token);
+    return true;
+  }
+  async function getBilling() {
+    var r = await fetch(SUPABASE_URL + "/functions/v1/get-config?billing=1", {
+      headers: { apikey: ANON, Authorization: "Bearer " + accessToken },
+    });
+    return { status: r.status, body: await r.json().catch(function () { return {}; }) };
+  }
+  async function friendly(r) {
+    try { var j = await r.json(); return j.msg || j.error_description || j.error || ("Error " + r.status); }
+    catch (e) { return "Error " + r.status; }
+  }
+
+  // ---- Dashboard render ----
+  function cap(s) { return (s || "").charAt(0).toUpperCase() + (s || "").slice(1); }
+  function fmtDate(iso) {
+    if (!iso) return "";
+    var d = new Date(iso); if (isNaN(d)) return "";
+    return d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+  }
+  function renderDash(cfg) {
+    $("dashEmail").textContent = currentEmail;
+    var active = cfg.status === "active" || cfg.status === "trialing";
+    $("dashBadge").textContent = cfg.status === "trialing" ? "Trial" : (active ? "Active" : cap(cfg.status || "Inactive"));
+    $("dashBadge").className = "badge" + (active ? "" : " off");
+    $("dashPlan").textContent = cap(cfg.plan || "—");
+
+    var end = fmtDate(cfg.currentPeriodEnd);
+    $("dashRenew").textContent = end ? ((active ? "Renews" : "Access until") + " " + end) : "";
+
+    var lim = cfg.limits || {}, used = (cfg.usage && cfg.usage.invoices) || 0;
+    if (lim.invoices == null) {
+      $("dashUsage").textContent = used + " used · unlimited";
+      $("dashBar").classList.add("hidden");
+    } else {
+      var left = Math.max(0, lim.invoices - used);
+      $("dashUsage").textContent = used + " / " + lim.invoices + "  ·  " + left + " left";
+      $("dashBar").classList.remove("hidden");
+      $("dashBar").firstElementChild.style.width = Math.min(100, Math.round((used / lim.invoices) * 100)) + "%";
+    }
+    $("dashInboxes").textContent = lim.inboxes == null ? "Unlimited" : ("Up to " + lim.inboxes);
+    $("btnPortal").href = PORTAL_URL;
+    show("dash");
+  }
+
+  async function loadDash() {
+    show("loading");
+    var res = await getBilling();
+    if (res.status === 401) { // token vencido
+      var ok = await refresh();
+      if (ok) { res = await getBilling(); }
+    }
+    if (res.status === 200) { renderDash(res.body); return; }
+    if (res.status === 403) {
+      // logueado pero sin sub
+      show("stepEmail");
+      $("msgEmail").className = "msg err";
+      $("msgEmail").innerHTML = "No subscription found for this email. Make sure it's the one you subscribed with — or <a href=\"/#pricing\" style=\"color:var(--accent)\">start a plan</a>.";
+      localStorage.removeItem(LS);
+      return;
+    }
+    show("stepEmail");
+  }
+
+  // ---- Events ----
+  $("btnSend").addEventListener("click", async function () {
+    var email = $("email").value.trim().toLowerCase();
+    if (!/.+@.+\..+/.test(email)) { $("msgEmail").className = "msg err"; $("msgEmail").textContent = "Enter a valid email."; return; }
+    $("btnSend").disabled = true; $("msgEmail").className = "msg ok"; $("msgEmail").textContent = "Sending code…";
+    try {
+      await sendCode(email);
+      currentEmail = email; $("codeEmail").textContent = email;
+      show("stepCode"); $("code").focus();
+      $("msgCode").className = "msg ok"; $("msgCode").textContent = "Check your email for the 6‑digit code.";
+    } catch (e) { $("msgEmail").className = "msg err"; $("msgEmail").textContent = "❌ " + e.message; }
+    $("btnSend").disabled = false;
+  });
+  $("email").addEventListener("keydown", function (e) { if (e.key === "Enter") $("btnSend").click(); });
+
+  $("btnVerify").addEventListener("click", async function () {
+    var code = $("code").value.trim();
+    if (!code) { $("msgCode").className = "msg err"; $("msgCode").textContent = "Enter the code from your email."; return; }
+    $("btnVerify").disabled = true; $("msgCode").className = "msg ok"; $("msgCode").textContent = "Verifying…";
+    try {
+      var s = await verifyCode(currentEmail, code);
+      accessToken = s.access_token;
+      if (s.refresh_token) localStorage.setItem(LS, s.refresh_token);
+      await loadDash();
+    } catch (e) { $("msgCode").className = "msg err"; $("msgCode").textContent = "❌ " + e.message; $("btnVerify").disabled = false; }
+  });
+  $("code").addEventListener("keydown", function (e) { if (e.key === "Enter") $("btnVerify").click(); });
+
+  $("btnBack").addEventListener("click", function () {
+    show("stepEmail"); $("code").value = ""; $("msgEmail").textContent = ""; $("email").focus();
+  });
+  $("btnSignout").addEventListener("click", function () {
+    localStorage.removeItem(LS); accessToken = null; currentEmail = "";
+    $("email").value = ""; $("code").value = ""; $("msgEmail").textContent = "";
+    show("stepEmail");
+  });
+
+  // ---- On load: intentar sesión guardada ----
+  (async function () {
+    if (localStorage.getItem(LS)) {
+      show("loading");
+      var ok = await refresh();
+      if (ok) {
+        // sacamos el email del propio backend vía getBilling? No trae email → lo pedimos al user token.
+        try {
+          var u = await fetch(SUPABASE_URL + "/auth/v1/user", { headers: { apikey: ANON, Authorization: "Bearer " + accessToken } });
+          if (u.ok) { var uj = await u.json(); currentEmail = uj.email || ""; }
+        } catch (e) {}
+        await loadDash();
+        return;
+      }
+    }
+    show("stepEmail");
+  })();
+</script>
+</body>
+</html>
