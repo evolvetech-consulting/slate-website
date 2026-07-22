@@ -212,10 +212,12 @@
     return true;
   }
   async function getBilling() {
-    var r = await fetch(SUPABASE_URL + "/functions/v1/get-config?billing=1", {
-      headers: { apikey: ANON, Authorization: "Bearer " + accessToken },
-    });
-    return { status: r.status, body: await r.json().catch(function () { return {}; }) };
+    try {
+      var r = await fetch(SUPABASE_URL + "/functions/v1/get-config?billing=1", {
+        headers: { apikey: ANON, Authorization: "Bearer " + accessToken },
+      });
+      return { status: r.status, body: await r.json().catch(function () { return {}; }) };
+    } catch (e) { return { status: 0, body: {} }; } // red/CORS
   }
   async function friendly(r) {
     try { var j = await r.json(); return j.msg || j.error_description || j.error || ("Error " + r.status); }
@@ -262,6 +264,11 @@
       if (ok) { res = await getBilling(); }
     }
     if (res.status === 200) { renderDash(res.body); return; }
+    if (res.status === 0) { // no se pudo contactar al backend (red / CORS)
+      show("loading");
+      $("loading").innerHTML = '<p class="lead" style="text-align:center;margin:1rem 0;">Couldn\'t reach the server. Please refresh in a moment.</p>';
+      return;
+    }
     if (res.status === 403) {
       // logueado pero sin sub
       show("stepEmail");
