@@ -152,22 +152,49 @@
   .lights i { width: 12px; height: 12px; border-radius: 50%; display: block; }
   .lights .r { background: #ff5f57; } .lights .y { background: #febc2e; } .lights .g { background: #28c840; }
   .titlebar .tt { position: absolute; left: 0; right: 0; text-align: center; font-size: 0.82rem; font-weight: 600; color: var(--ink); pointer-events: none; letter-spacing: -0.01em; }
-  .app-body { padding: 1.6rem clamp(1rem, 4vw, 2.4rem) 1.9rem; display: flex; flex-direction: column; gap: 1.05rem; align-items: center; }
-  .field-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; justify-content: center; }
-  .pill-input { background: color-mix(in srgb, var(--ink) 6%, transparent); border: 1px solid var(--line); border-radius: 8px; padding: 0.4rem 0.7rem; color: var(--ink); font-size: 0.82rem; min-width: 210px; }
-  .mini-btn { width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; font-size: 0.95rem; border: none; }
-  .mini-btn.add { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
-  .mini-btn.rm { background: color-mix(in srgb, var(--bad) 16%, transparent); color: var(--bad); }
-  .app-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center; }
-  .app-actions .primary { background: var(--accent); color: #fff; border: none; border-radius: 11px; padding: 0.62rem 1.15rem; font-size: 0.9rem; font-weight: 600; display: inline-flex; gap: 0.45rem; align-items: center; }
-  .app-actions .secondary { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); border: none; border-radius: 11px; padding: 0.62rem 1.15rem; font-size: 0.9rem; font-weight: 600; display: inline-flex; gap: 0.45rem; align-items: center; }
-  .console {
-    width: 100%; margin-top: 0.4rem; border-radius: 12px; padding: 0.85rem 1rem; background: #0c0d10;
-    border: 1px solid rgba(255,255,255,0.08); font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 0.72rem; line-height: 1.7; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  .app-body { padding: 1.5rem clamp(1rem, 4vw, 2.2rem) 1.9rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  /* Barra de controles del hero — una sola línea, compacta. */
+  .hero-controls {
+    display: flex; align-items: stretch; gap: 0.5rem; flex-wrap: nowrap;
+    padding: 0.7rem; border: 1px solid var(--line); border-radius: 13px;
+    background: color-mix(in srgb, var(--ink) 4%, transparent);
   }
-  .console .ready { color: var(--good); font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; display: block; margin-bottom: 0.35rem; }
-  .console .i { color: var(--good); } .console .w { color: var(--warn); } .console .e { color: var(--bad); } .console .d { color: #9aa3ad; }
+  .hc-field {
+    display: flex; flex-direction: column; justify-content: center; gap: 0.2rem; min-width: 0;
+    color: var(--ink); padding: 0.4rem 0.65rem;
+    border: 1px solid var(--line); border-radius: 9px; background: color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+  .hc-field small { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .hc-field .v { font-size: 0.78rem; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hc-field.grow { flex: 1 1 auto; }
+  .hc-field .chev { color: var(--faint); }
+  .hc-cta {
+    display: inline-flex; align-items: center; align-self: stretch; padding: 0 1rem; flex: none;
+    background: var(--accent); color: #fff; border-radius: 99px; font-size: 0.8rem; font-weight: 600; white-space: nowrap;
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  @media (max-width: 560px) { .hero-controls { flex-wrap: wrap; } .hc-field.grow { flex-basis: 100%; } }
+  /* Cola en vivo */
+  .hero-queue { display: flex; flex-direction: column; gap: 0.15rem; }
+  .hq-head { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; }
+  .hq-pct { color: var(--accent); }
+  .hq-bar { height: 5px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 12%, transparent); overflow: hidden; margin-bottom: 0.6rem; }
+  .hq-bar > i { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+  /* Columnas FIJAS para que todas las filas alineen igual (doc | job | estado). */
+  .hq-cols, .hq-row { display: grid; grid-template-columns: 1.9rem minmax(0, 1.7fr) minmax(0, 1.2fr) 8.5rem; align-items: center; gap: 0.9rem; }
+  .hq-row { padding: 0.7rem 0.6rem; border-radius: 10px; font-size: 0.82rem; }
+  .hq-cols { padding: 0 0.6rem 0.5rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); border-bottom: 1px solid var(--line); margin-bottom: 0.3rem; }
+  .hq-cols span:last-child { text-align: right; }
+  .hq-row.active { background: color-mix(in srgb, var(--accent) 10%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent); }
+  .hq-dot { width: 1.4rem; height: 1.4rem; border-radius: 50%; display: grid; place-items: center; font-size: 0.7rem; border: 1.5px solid var(--line-strong); color: transparent; }
+  .hq-dot.ok { border-color: color-mix(in srgb, var(--good) 55%, transparent); background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+  .hq-dot.on { border-color: var(--accent); background: var(--accent); color: #fff; }
+  .hq-name { display: flex; flex-direction: column; font-weight: 600; color: var(--ink); min-width: 0; }
+  .hq-name small { font-weight: 400; font-size: 0.68rem; color: var(--muted); }
+  .hq-job { color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hq-job.dim, .hq-state.dim { color: var(--faint); }
+  .hq-state { text-align: right; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hq-state.ok { color: var(--good); } .hq-state.on { color: var(--accent); }
 
   /* ---------- Feature blocks ---------- */
   .feat { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
@@ -201,6 +228,20 @@
   /* "File under: <categoría>" */
   .fileunder { font-size: 0.77rem; color: var(--muted); margin: 0.45rem 0 0.15rem; }
   .fileunder b { color: var(--ink); font-weight: 600; }
+  /* Mock del History (tabla de todo lo que Slate manejó). */
+  .hist-mock { width: min(460px, 92vw); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 16px; padding: 0.6rem 0.7rem; box-shadow: var(--shadow-soft); }
+  .hm-top { display: flex; align-items: baseline; justify-content: space-between; padding: 0.5rem 0.55rem 0.7rem; font-size: 0.82rem; border-bottom: 1px solid var(--line); }
+  .hm-top span { color: var(--muted); font-size: 0.76rem; }
+  .hm-row { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1.1fr) auto; align-items: center; gap: 0.7rem; padding: 0.7rem 0.55rem; border-bottom: 1px solid var(--line); font-size: 0.8rem; }
+  .hm-row:last-child { border-bottom: none; }
+  .hm-doc { display: flex; flex-direction: column; font-weight: 600; color: var(--ink); min-width: 0; }
+  .hm-doc small { font-weight: 400; font-size: 0.68rem; color: var(--muted); }
+  .hm-job { color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hm-job.dim { color: var(--faint); }
+  .hm-out { justify-self: end; font-size: 0.68rem; font-weight: 700; border-radius: 999px; padding: 0.2rem 0.6rem; white-space: nowrap; }
+  .hm-out.ok { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+  .hm-out.warn { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent); }
+  .hm-out.skip { color: var(--faint); background: color-mix(in srgb, var(--ink) 8%, transparent); }
 
   /* telegram bubble */
   .tg { width: min(360px, 90vw); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 18px; box-shadow: var(--shadow-soft); overflow: hidden; }
@@ -407,24 +448,23 @@
         <span class="tt">Slate</span>
       </div>
       <div class="app-body">
-        <div class="field-row">
-          <span>Inbox</span>
-          <span class="pill-input">office@northpeakroofing.com</span>
-          <button class="mini-btn add" aria-hidden="true">＋</button>
-          <button class="mini-btn rm" aria-hidden="true">－</button>
+        <!-- Barra de controles (como la app: Inbox / Look back / Company / Preview) -->
+        <div class="hero-controls">
+          <span class="hc-field grow"><small>Inbox</small><b class="v">office@northpeak.co</b></span>
+          <span class="hc-field"><small>Look back</small><b class="v">Last 24h <span class="chev">⌄</span></b></span>
+          <span class="hc-field"><small>Company</small><b class="v">All <span class="chev">⌄</span></b></span>
+          <span class="hc-cta"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" style="vertical-align:-2px;margin-right:5px;"><polygon points="7 4 20 12 7 20 7 4" fill="currentColor" stroke="none"/></svg>Process</span>
         </div>
-        <div class="app-actions">
-          <span class="primary"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H2a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 3.6 8a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H8a1.65 1.65 0 0 0 1-1.51V2a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V8a1.65 1.65 0 0 0 1.51 1H22a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Process invoices</span>
-          <span class="secondary"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Preview</span>
-          <span class="secondary"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Upload</span>
-        </div>
-        <div class="console" aria-hidden="true">
-          <span class="ready">Ready.</span>
-          <span class="i">[INFO]</span> <span class="d">Fetched 15 new emails</span><br>
-          <span class="i">[INFO]</span> <span class="d">Supplier invoice #4471 → job #218 · payment + PDF + note</span><br>
-          <span class="i">[INFO]</span> <span class="d">Aerial report #A‑2208 → job #305 · added to Payments</span><br>
-          <span class="w">[SKIP]</span> <span class="d">a customer payment request — not a supplier bill</span><br>
-          <span class="i">[DONE]</span> <span class="d">12 loaded · 2 for review · 1 ignored</span>
+
+        <!-- Cola en vivo: lo que la app muestra mientras trabaja (todo ficticio) -->
+        <div class="hero-queue" aria-hidden="true">
+          <div class="hq-head"><span>Overall progress</span><span class="hq-pct">62%</span></div>
+          <div class="hq-bar"><i style="width:62%"></i></div>
+          <div class="hq-cols"><span></span><span>Document</span><span>Job</span><span>Current step</span></div>
+          <div class="hq-row done"><span class="hq-dot ok">✓</span><span class="hq-name">Summit Building Supply<small>Invoice #2607-099566 · Email</small></span><span class="hq-job">#218 · Dana Whitfield</span><span class="hq-state ok">Loaded</span></div>
+          <div class="hq-row done"><span class="hq-dot ok">✓</span><span class="hq-name">Aerial Report<small>Measurement report · Email</small></span><span class="hq-job">#305 · Riley Nyquist</span><span class="hq-state ok">Loaded</span></div>
+          <div class="hq-row active"><span class="hq-dot on">●</span><span class="hq-name">Cedar Ridge Materials<small>Invoice #48192 · Email</small></span><span class="hq-job">#204 · Marco Tellez</span><span class="hq-state on">PDF uploading…</span></div>
+          <div class="hq-row"><span class="hq-dot"></span><span class="hq-name">Corner Hardware<small>Receipt · Upload</small></span><span class="hq-job dim">Not identified</span><span class="hq-state dim">Waiting</span></div>
         </div>
       </div>
     </div>
@@ -508,6 +548,23 @@
         <div class="opt sel"><span class="dot"></span> #491 · Riley Nyquist · 1656 Birch Lane</div>
         <div class="pills"><span class="pill">💳 Payment ✓</span><span class="pill">📎 PDF ✓</span><span class="pill">📝 Note ✓</span></div>
         <div class="row"><span class="tag-btn p">Resolve</span><span class="tag-btn s">Skip</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap feat rev reveal">
+    <div class="feat-copy">
+      <p class="eyebrow">Nothing gets lost</p>
+      <h2>A record of<br>everything handled.</h2>
+      <p>Every document Slate touched — loaded, already there, or skipped — is kept in one searchable place. Filter by outcome or date, and export it to CSV when your books need it. No more digging through the inbox to prove what got paid.</p>
+    </div>
+    <div class="feat-media">
+      <div class="hist-mock">
+        <div class="hm-top"><b>28 documents</b><span>$17,402.19 recorded</span></div>
+        <div class="hm-row"><span class="hm-doc">Summit Building Supply<small>Invoice #48192 · Email</small></span><span class="hm-job">#218 · Dana Whitfield</span><span class="hm-out ok">Loaded</span></div>
+        <div class="hm-row"><span class="hm-doc">Aerial Report<small>Measurement · Email</small></span><span class="hm-job">#305 · Riley Nyquist</span><span class="hm-out ok">Loaded</span></div>
+        <div class="hm-row"><span class="hm-doc">Corner Hardware<small>Receipt · Upload</small></span><span class="hm-job dim">—</span><span class="hm-out skip">Skipped</span></div>
+        <div class="hm-row"><span class="hm-doc">Cedar Ridge Materials<small>Invoice #2607 · Email</small></span><span class="hm-job">#204 · Marco Tellez</span><span class="hm-out warn">Already there</span></div>
       </div>
     </div>
   </div>
@@ -724,6 +781,7 @@
       <div class="nav-links" style="display:flex; color: var(--faint);">
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
+        <a href="#support">Support</a>
         <a href="#pricing">Pricing</a>
       </div>
       <span>© 2026 Slate</span>
