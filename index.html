@@ -138,6 +138,11 @@
   .hero .sub { max-width: 40ch; margin: 0 auto 2rem; }
   .hero-cta { display: flex; gap: 1.4rem; align-items: center; justify-content: center; flex-wrap: wrap; }
   .price-note { margin-top: 1rem; font-size: 0.85rem; color: var(--faint); }
+  /* En qué corre. Va aparte del precio: es la primera pregunta de alguien con Windows, y
+     hasta ahora el sitio no la contestaba en ningún lado. */
+  .platforms { margin-top: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; font-size: 0.82rem; color: var(--muted); }
+  .pf { font-weight: 600; letter-spacing: 0.01em; }
+  .pf-sep { color: var(--faint); }
 
   /* device / product mockup */
   .stage { margin-top: clamp(3rem, 7vw, 5.5rem); perspective: 1600px; }
@@ -442,6 +447,7 @@
       <a class="btn ghost lg" href="#how">See how it works ›</a>
     </div>
     <p class="price-note">From $49/mo · 14-day free trial · Runs quietly in the background</p>
+    <p class="platforms"><span class="pf">macOS</span><span class="pf-sep">·</span><span class="pf">Windows</span></p>
   </div>
 
   <div class="wrap stage">
@@ -668,6 +674,8 @@
     <p class="eyebrow" style="text-align:center;">Fits your stack</p>
     <h2 style="font-size: clamp(1.8rem, 4.2vw, 2.8rem);">Works with what you already use.</h2>
     <div class="chips">
+      <span class="chip">Mac</span>
+      <span class="chip">Windows</span>
       <span class="chip">Gmail</span>
       <span class="chip">AccuLynx</span>
       <span class="chip">Material suppliers</span>
