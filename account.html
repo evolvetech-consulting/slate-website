@@ -96,6 +96,13 @@
   .bar { height: 7px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 10%, transparent); margin-top: 0.55rem; overflow: hidden; }
   .bar > i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
 
+  /* Descarga. Los dos botones van lado a lado porque son la MISMA acción en distinto
+     sistema, no dos decisiones: uno solo aplica a cada cliente. */
+  .dl-btns { display: flex; gap: 0.5rem; margin-top: 0.6rem; }
+  .dl-btns .btn { flex: 1; padding-left: 0.6rem; padding-right: 0.6rem; }
+  .dl-hint { font-size: 0.74rem; color: var(--faint); margin: 0.6rem 0 0; line-height: 1.45; }
+  @media (max-width: 380px) { .dl-btns { flex-direction: column; } }
+
   .actions { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
   .foot { text-align: center; margin-top: 1rem; }
 
@@ -151,6 +158,21 @@
           <div class="stat">
             <div class="k">Connected inboxes</div>
             <div class="v" id="dashInboxes">—</div>
+          </div>
+
+          <!-- La descarga vivía SOLO en el mail del recibo. Un cliente que cambia de
+               computadora, o que borró ese mail, no tenía de dónde bajar Slate estando
+               logueado y al día. Va acá, que es donde lo busca. -->
+          <div class="stat">
+            <div class="k">Download Slate</div>
+            <div class="dl-btns">
+              <a class="btn ghost" href="https://github.com/lucaskleisinger/acculynx-invoice-releases/releases/latest/download/Slate-Setup.exe">Windows</a>
+              <!-- macOS va a la página del release, no a un archivo: el build de Mac todavía
+                   no está firmado y necesita el paso extra de instalación. Mismo criterio
+                   que thanks.html. -->
+              <a class="btn ghost" href="https://github.com/lucaskleisinger/acculynx-invoice-releases/releases/latest" target="_blank" rel="noopener">macOS</a>
+            </div>
+            <p class="dl-hint">Windows will ask you to confirm before installing — choose <b>More info</b>, then <b>Run anyway</b>. Slate installs just for you and never asks for administrator access.</p>
           </div>
 
           <div class="actions">

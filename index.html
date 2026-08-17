@@ -815,11 +815,11 @@
     <h2 style="font-size: clamp(1.8rem, 4.2vw, 2.6rem);">Already bought? Install it.</h2>
     <p class="sub">Slate runs on your own computer, next to the tools you already use. Sign in with the email from your receipt.</p>
     <div class="dl-row">
-      <!-- OJO: apunta a v0.9.73 y NO a /latest/. El instalador de v0.9.74 no llegó a
-           publicarse (el CI viene fallando al subirlo), y /latest/ resuelve a la última
-           versión: mientras falte el .exe ahí, el botón devuelve 404. Volver a
-           /releases/latest/download/ apenas el CI publique de nuevo. -->
-      <a class="btn lg" href="https://github.com/lucaskleisinger/acculynx-invoice-releases/releases/download/v0.9.73/Slate-Setup.exe">Download for Windows</a>
+      <!-- Va a /latest/ y no a una versión fija. Estuvo clavado en v0.9.73 unas horas,
+           mientras el instalador de v0.9.74 no llegaba a publicarse, y eso tenía un costo
+           que no se ve: el auto-update de Windows recién existe DESDE la 0.9.74, así que
+           todo el que instalara la 0.9.73 se quedaba sin actualizaciones para siempre. -->
+      <a class="btn lg" href="https://github.com/lucaskleisinger/acculynx-invoice-releases/releases/latest/download/Slate-Setup.exe">Download for Windows</a>
       <span class="dl-alt">On a Mac? Your download link comes with your receipt.</span>
     </div>
     <p class="dl-note">Windows will ask you to confirm before installing — choose <b>More info</b>, then <b>Run anyway</b>. Slate installs just for you and never asks for administrator access.</p>
