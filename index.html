@@ -138,6 +138,10 @@
   .hero .sub { max-width: 40ch; margin: 0 auto 2rem; }
   .hero-cta { display: flex; gap: 1.4rem; align-items: center; justify-content: center; flex-wrap: wrap; }
   .price-note { margin-top: 1rem; font-size: 0.85rem; color: var(--faint); }
+  .dl-row { margin-top: 1.8rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.4rem; }
+  .dl-alt { font-size: 0.9rem; color: var(--muted); }
+  .dl-note { margin: 1.4rem auto 0; max-width: 46ch; font-size: 0.82rem; line-height: 1.6; color: var(--faint); }
+  .dl-note b { color: var(--muted); font-weight: 600; }
   /* En qué corre. Va aparte del precio: es la primera pregunta de alguien con Windows, y
      hasta ahora el sitio no la contestaba en ningún lado. */
   .platforms { margin-top: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; font-size: 0.82rem; color: var(--muted); }
@@ -798,6 +802,23 @@
       <a class="btn lg" href="#pricing">Buy Slate</a>
       <a class="btn ghost lg" href="https://calendar.app.google/xzdcKHvHxWcXMPLf6" target="_blank" rel="noopener">Book a demo ›</a>
     </div>
+  </div>
+</section>
+
+<!-- ===================== DOWNLOAD ===================== -->
+<!-- Va DESPUÉS del CTA final y a propósito NO está en el menú: el flujo es comprar y
+     después instalar. Si la descarga compitiera con "Buy Slate", alguien instalaría sin
+     cuenta y se encontraría con que la app le pide una suscripción activa. -->
+<section id="download" class="alt">
+  <div class="narrow reveal" style="text-align:center;">
+    <p class="eyebrow">Download</p>
+    <h2 style="font-size: clamp(1.8rem, 4.2vw, 2.6rem);">Already bought? Install it.</h2>
+    <p class="sub">Slate runs on your own computer, next to the tools you already use. Sign in with the email from your receipt.</p>
+    <div class="dl-row">
+      <a class="btn lg" href="https://github.com/lucaskleisinger/acculynx-invoice-releases/releases/latest/download/Slate-Setup.exe">Download for Windows</a>
+      <span class="dl-alt">On a Mac? Your download link comes with your receipt.</span>
+    </div>
+    <p class="dl-note">Windows will ask you to confirm before installing — choose <b>More info</b>, then <b>Run anyway</b>. Slate installs just for you and never asks for administrator access.</p>
   </div>
 </section>
 
