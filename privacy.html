@@ -6,9 +6,9 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="Slate reads every supplier invoice in your inbox and posts it to your CRM — payment, PDF and note — automatically.">
+<meta name="description" content="What Slate reads, where it goes, and what we never do with it — including our use of Google user data.">
 <meta name="theme-color" content="#08090b">
-<title>Slate — Invoices, handled.</title>
+<title>Privacy Policy — Slate</title>
 <style>
   /* ============================================================
      Slate — landing page. System font (SF Pro on Apple devices).
@@ -420,548 +420,121 @@
     .scene.active .s2-amt, .scene.active .m-job, .scene.active .m-chip { opacity: 1; }
   }
 </style>
+<style>
+  /* Prosa legal: ancho de lectura acotado — a todo el ancho la línea es ilegible. */
+  .legal { max-width: 720px; margin: 0 auto; padding: 60px 22px 90px; }
+  .legal h1 { font-size: clamp(1.9rem, 4.5vw, 2.5rem); line-height: 1.15; margin: 0 0 8px; color: var(--ink); }
+  .legal .updated { color: var(--faint); font-size: 0.9rem; margin: 0 0 40px; }
+  .legal h2 { font-size: 1.15rem; color: var(--ink); margin: 40px 0 12px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .legal h3 { font-size: 1rem; color: var(--ink); margin: 26px 0 8px; }
+  .legal p, .legal li { color: var(--muted); line-height: 1.68; }
+  .legal p { margin: 0 0 14px; }
+  .legal ul { margin: 0 0 14px; padding-left: 22px; }
+  .legal li { margin-bottom: 9px; }
+  .legal a { color: var(--accent); }
+  .legal code { background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; font-size: 0.9em; }
+  .legal strong { color: var(--ink); }
+  /* Lo que Google exige que se lea sin tener que buscarlo. */
+  .legal .clave { background: var(--panel); border: 1px solid var(--line-strong); border-radius: 12px; padding: 20px 22px; margin: 0 0 22px; }
+  .legal .clave p:last-child { margin-bottom: 0; }
+  .legal-top { border-bottom: 1px solid var(--line); }
+  .legal-top .wrap { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; }
+  .legal-top a.brand { display: flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; font-weight: 650; }
+</style>
 </head>
 <body>
 
-
-<!-- ===================== NAV ===================== -->
-<nav class="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="#top"><span class="mark"></span> Slate</a>
-    <div class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#features">Features</a>
-      <a href="#support">Support</a>
-      <a href="#pricing">Pricing</a>
-    </div>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeBtn" title="Light / Dark" aria-label="Toggle theme">☾</button>
-      <a href="/account" style="font-size:0.86rem;color:var(--muted);">Sign in</a>
-      <a class="btn" href="#pricing">Buy</a>
-    </div>
-  </div>
-</nav>
-
-<!-- ===================== HERO ===================== -->
-<header class="hero" id="top">
+<div class="legal-top">
   <div class="wrap">
-    <p class="eyebrow">For roofing and construction contractors</p>
-    <h1>Slate</h1>
-    <div class="tagline grad">Invoices, handled.</div>
-    <p class="lead sub">Every supplier invoice in your inbox — read, matched to the right job, and posted to your CRM with the payment, the PDF, and the note. Automatically.</p>
-    <div class="hero-cta">
-      <a class="btn lg" href="#pricing">Buy Slate</a>
-      <a class="btn ghost lg" href="#how">See how it works ›</a>
-    </div>
-    <p class="price-note">From $49/mo · 14-day free trial · Runs quietly in the background</p>
-    <p class="platforms"><span class="pf">macOS</span><span class="pf-sep">·</span><span class="pf">Windows</span></p>
+    <a class="brand" href="/"><span class="mark"></span> Slate</a>
+    <a href="/" style="color: var(--muted); text-decoration: none;">Back to site</a>
   </div>
+</div>
 
-  <div class="wrap stage">
-    <div class="device reveal-tilt" id="heroDevice">
-      <div class="titlebar">
-        <span class="lights"><i class="r"></i><i class="y"></i><i class="g"></i></span>
-        <span class="tt">Slate</span>
-      </div>
-      <div class="app-body">
-        <!-- Barra de controles (como la app: Inbox / Look back / Company / Preview) -->
-        <div class="hero-controls">
-          <span class="hc-field grow"><small>Inbox</small><b class="v">office@northpeak.co</b></span>
-          <span class="hc-field"><small>Look back</small><b class="v">Last 24h <span class="chev">⌄</span></b></span>
-          <span class="hc-field"><small>Company</small><b class="v">All <span class="chev">⌄</span></b></span>
-          <span class="hc-cta"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" style="vertical-align:-2px;margin-right:5px;"><polygon points="7 4 20 12 7 20 7 4" fill="currentColor" stroke="none"/></svg>Process</span>
-        </div>
+<main class="legal">
+<h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 3 September 2026</p>
 
-        <!-- Cola en vivo: lo que la app muestra mientras trabaja (todo ficticio) -->
-        <div class="hero-queue" aria-hidden="true">
-          <div class="hq-head"><span>Overall progress</span><span class="hq-pct">62%</span></div>
-          <div class="hq-bar"><i style="width:62%"></i></div>
-          <div class="hq-cols"><span></span><span>Document</span><span>Job</span><span>Current step</span></div>
-          <div class="hq-row done"><span class="hq-dot ok">✓</span><span class="hq-name">Summit Building Supply<small>Invoice #2607-099566 · Email</small></span><span class="hq-job">#218 · Dana Whitfield</span><span class="hq-state ok">Loaded</span></div>
-          <div class="hq-row done"><span class="hq-dot ok">✓</span><span class="hq-name">Aerial Report<small>Measurement report · Email</small></span><span class="hq-job">#305 · Riley Nyquist</span><span class="hq-state ok">Loaded</span></div>
-          <div class="hq-row active"><span class="hq-dot on">●</span><span class="hq-name">Cedar Ridge Materials<small>Invoice #48192 · Email</small></span><span class="hq-job">#204 · Marco Tellez</span><span class="hq-state on">PDF uploading…</span></div>
-          <div class="hq-row"><span class="hq-dot"></span><span class="hq-name">Corner Hardware<small>Receipt · Upload</small></span><span class="hq-job dim">Not identified</span><span class="hq-state dim">Waiting</span></div>
-        </div>
-      </div>
+    <p>This policy explains what EvolveTech Consulting LLC (&ldquo;EvolveTech&rdquo;, &ldquo;we&rdquo;) collects when you use <strong>Slate</strong>, and what we do with it. Slate is a desktop and mobile application that reads business documents &mdash; supplier invoices, checks, crew pay sheets, insurance estimates and aerial reports &mdash; and files them against the correct job in your CRM.</p>
+
+    <h2>Google user data</h2>
+
+    <div class="clave">
+      <p><strong>Slate&rsquo;s use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</strong></p>
+      <p>We do not use your Gmail data for advertising, we do not sell or transfer it, and we do not use it to train any machine learning or AI model.</p>
     </div>
-  </div>
-</header>
 
-<!-- ===================== STATEMENT ===================== -->
-<section class="statement alt">
-  <div class="narrow reveal">
-    <h2>The invoices come in.<br><span class="grad">Slate does the rest.</span></h2>
-    <p>Every supplier, every material order, every aerial report — they all land in one inbox, and never get retyped again.</p>
-  </div>
-</section>
+    <h3>What we access</h3>
+    <p>If you connect a Gmail account, Slate requests the <code>gmail.modify</code> scope. It uses that access for exactly two things:</p>
+    <ul>
+      <li><strong>Reading messages that match a document search.</strong> Slate searches your mailbox for messages that look like supplier documents &mdash; typically those carrying a PDF attachment, plus specific senders you configure. It reads the subject, sender, body and attachments of those messages only. It does not read your mailbox as a whole.</li>
+      <li><strong>Applying two labels.</strong> After handling a message, Slate labels it <code>Processed</code> or <code>Skipped</code>, so the same document is never filed twice. These labels are the only change Slate makes to your mailbox. It never sends, deletes, replies to, forwards or modifies your email.</li>
+    </ul>
 
-<!-- ===================== FEATURES ===================== -->
-<section id="features">
-  <div class="wrap feat reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">Automatic</p>
-      <h2>From inbox to your CRM in seconds.</h2>
-      <p>Slate reads each new supplier invoice, pulls the amount, date and PO, finds the matching job, and posts the payment, attaches the PDF, and leaves a note — the same three steps your office does by hand, done the moment the email arrives.</p>
-    </div>
-    <div class="feat-media">
-      <div class="card-mock">
-        <div class="ch">Supplier invoice · $165.51</div>
-        <div class="csub">Invoice #4471 · 1420 Oak Ridge Dr</div>
-        <div class="opt sel"><span class="dot"></span> #218 · Jordan Mills · 1420 Oak Ridge Dr</div>
-        <div class="opt"><span class="dot"></span> Posted: payment · PDF · note</div>
-        <div class="row"><span class="tag-btn p">Loaded ✓</span></div>
-      </div>
-    </div>
-  </div>
+    <h3>Why the scope is what it is</h3>
+    <p>Applying a label is a write operation, and Google offers no narrower scope that permits reading a message and labelling it. A read-only scope would leave Slate unable to remember what it had already handled, which would result in duplicate charges being filed to your CRM.</p>
 
-  <div class="wrap feat rev reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">Accurate</p>
-      <h2>Reads like your best office manager.</h2>
-      <p>It matches invoices to jobs by number, address, and customer — and remembers what it already posted, so the same bill never gets paid twice. When something looks off, it doesn't guess. It sets it aside for you.</p>
-    </div>
-    <div class="feat-media">
-      <div class="card-mock">
-        <div class="ch">Duplicate caught</div>
-        <div class="csub">A payment for this invoice already exists on job #142</div>
-        <div class="opt"><span class="dot"></span> Dana Whitfield · $1,240.00 · ref #3390</div>
-        <div class="opt sel"><span class="dot"></span> Skip — already paid</div>
-      </div>
-    </div>
-  </div>
+    <h3>Where the data goes</h3>
+    <p>Documents are processed on your own computer or phone. The contents of a document are sent to two places, and nowhere else:</p>
+    <ul>
+      <li><strong>Google&rsquo;s Gemini API</strong>, which reads the document and returns the structured fields (supplier, amount, invoice number, address).</li>
+      <li><strong>Your own CRM</strong> &mdash; the account you connected &mdash; where the payment, the document and a note are recorded against the matching job.</li>
+    </ul>
+    <p>We do not operate a server that stores your documents or your email. EvolveTech has no copy of them.</p>
 
-  <div class="wrap feat reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">No attachment, no problem</p>
-      <h2>Some suppliers don't<br>attach anything.</h2>
-      <p>Dumpster rentals, disposal, equipment — plenty of them put the whole bill in the body of the email and never attach a PDF. Most tools look for attachments and miss those entirely. Tell Slate which suppliers do it and it reads those emails too, the same way.</p>
-    </div>
-    <div class="feat-media">
-      <div class="card-mock">
-        <div class="ch">Ace Container &amp; Disposal · $607.80</div>
-        <div class="csub">Email body · no attachment</div>
-        <div class="opt sel"><span class="dot"></span> #812 · Marcus Whitfield · 4418 Sandpiper Trail</div>
-        <div class="fileunder">File under: <b>Invoice</b></div>
-        <div class="row"><span class="tag-btn p">Loaded ✓</span></div>
-      </div>
-    </div>
-  </div>
+    <h3>Where credentials are kept</h3>
+    <p>Your Google authorisation token, CRM API key and any other credentials are stored on your own device: in the application&rsquo;s local data folder on desktop, and in the system Keychain on iPhone. They are never transmitted to us.</p>
 
-  <div class="wrap feat reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">More than one inbox</p>
-      <h2>The office gets some.<br>You get the rest.</h2>
-      <p>Invoices rarely land in one place. Connect every inbox they reach and Slate goes through all of them in a single run — and if the same invoice arrived in two, you review it once, not twice.</p>
-    </div>
-    <div class="feat-media">
-      <div class="card-mock">
-        <div class="ch">All inboxes · 2 connected</div>
-        <div class="csub">office@ · owner@</div>
-        <div class="opt"><span class="dot"></span> Northgate Supply · $4,074.03 · Loaded</div>
-        <div class="opt sel"><span class="dot"></span> Same invoice, second inbox · Already there</div>
-      </div>
-    </div>
-  </div>
+    <h3>Revoking access</h3>
+    <p>You can disconnect Gmail from inside Slate at any time, or revoke it from your Google Account at <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>. Revoking takes effect immediately and Slate stops reading your mailbox.</p>
 
-  <div class="wrap feat reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">Beyond the inbox</p>
-      <h2>Not everything<br>comes by email.</h2>
-      <p>Not everything lands in the inbox. Upload an invoice or a payment yourself — snap a photo or drop in a PDF — and Slate reads it, tells an invoice from a crew payment from a check, and files each in the right folder. Several in one photo? It splits them out, one per job.</p>
-    </div>
-    <div class="feat-media">
-      <div class="card-mock">
-        <div class="ch">Crew payment · $2,110.00</div>
-        <div class="csub">Uploaded photo · Marco's Pay Sheet</div>
-        <div class="opt sel"><span class="dot"></span> #204 · Marcus Reed · 812 Maple Crest Rd</div>
-        <div class="fileunder">File under: <b>Crew Payment</b></div>
-        <div class="row"><span class="tag-btn p">Loaded ✓</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <h2>Account and billing data</h2>
+    <p>To run your subscription we store your email address and your subscription status. Payments are handled by <strong>Stripe</strong>; we never see or store your card details. Account records are held in <strong>Supabase</strong>, our database provider.</p>
 
-<!-- ===================== SPOTLIGHT (command bar) ===================== -->
-<section class="alt">
-  <div class="wrap feat reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">You're in control</p>
-      <h2>When it's not sure,<br>you decide.</h2>
-      <p>Pick the job from the list, then choose what to post — payment, PDF, note — with a tap. Splitting one bill across several jobs? Give each its own amount. Slate does exactly what you picked, and nothing you didn't.</p>
-      <p>And when you can't decide yet — you need to ask someone where a bill came from — put it on hold with a note. It waits for you in Review, even after you close Slate.</p>
-    </div>
-    <div class="feat-media">
-      <div class="card-mock">
-        <div class="ch">Supplier invoice · $943.37</div>
-        <div class="csub">Needs review — pick a job</div>
-        <div class="opt"><span class="dot"></span> #519 · Riley Nyquist · 1656 Birch Lane</div>
-        <div class="opt sel"><span class="dot"></span> #491 · Riley Nyquist · 1656 Birch Lane</div>
-        <div class="pills"><span class="pill">💳 Payment ✓</span><span class="pill">📎 PDF ✓</span><span class="pill">📝 Note ✓</span></div>
-        <div class="row"><span class="tag-btn p">Resolve</span><span class="tag-btn s">Skip</span><span class="tag-btn s">Hold</span></div>
-      </div>
-    </div>
-  </div>
+    <h2>Diagnostic information</h2>
+    <p>Slate records a local activity log on your device so you can see what it did on each run. If you contact support, you may choose to send us an excerpt. We do not collect it automatically.</p>
 
-  <div class="wrap feat rev reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">For the old ones</p>
-      <h2>The invoice with<br>nothing on it.</h2>
-      <p>Old bills often carry no job number and no address — just a date. Turn on your install calendar and Slate looks at which crews were scheduled around that day, and offers those jobs. It never files on a date alone: you always confirm.</p>
-    </div>
-    <div class="feat-media">
-      <div class="card-mock">
-        <div class="ch">Supplier invoice · $315.50</div>
-        <div class="csub">No job number, no address — invoiced Jan 30</div>
-        <div class="opt sel"><span class="dot"></span> #337 · Colleen DiLiddo · crew scheduled Jan 29</div>
-        <div class="opt"><span class="dot"></span> #341 · Joey &amp; Melanie Traywick · crew scheduled Jan 30</div>
-      </div>
-    </div>
-  </div>
+    <h2>Retention</h2>
+    <p>Because documents and email are processed on your device and never reach our servers, there is nothing for us to retain. Account and billing records are kept for as long as your subscription is active, and afterwards only as long as tax and accounting law requires.</p>
 
-  <div class="wrap feat reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">Nothing gets lost</p>
-      <h2>A record of<br>everything handled.</h2>
-      <p>Every document Slate touched — loaded, already there, or skipped — is kept in one searchable place. Filter by outcome or date, and export it to CSV when your books need it. No more digging through the inbox to prove what got paid.</p>
-    </div>
-    <div class="feat-media">
-      <div class="hist-mock">
-        <div class="hm-top"><b>28 documents</b><span>$17,402.19 recorded</span></div>
-        <div class="hm-row"><span class="hm-doc">Summit Building Supply<small>Invoice #48192 · Email</small></span><span class="hm-job">#218 · Dana Whitfield</span><span class="hm-out ok">Loaded</span></div>
-        <div class="hm-row"><span class="hm-doc">Aerial Report<small>Measurement · Email</small></span><span class="hm-job">#305 · Riley Nyquist</span><span class="hm-out ok">Loaded</span></div>
-        <div class="hm-row"><span class="hm-doc">Corner Hardware<small>Receipt · Upload</small></span><span class="hm-job dim">—</span><span class="hm-out skip">Skipped</span></div>
-        <div class="hm-row"><span class="hm-doc">Cedar Ridge Materials<small>Invoice #2607 · Email</small></span><span class="hm-job">#204 · Marco Tellez</span><span class="hm-out warn">Already there</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <h2>Your rights</h2>
+    <p>You can ask us what account data we hold about you, ask us to correct it, or ask us to delete it once your subscription has ended. Write to <a href="mailto:hello@evolvetech-consulting.com">hello@evolvetech-consulting.com</a> and we will respond within 30 days.</p>
 
-<!-- ===================== FEATURE: monitoring + native mac ===================== -->
-<section>
-  <div class="wrap feat rev reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">Support &amp; monitoring</p>
-      <h2>Support that spots it<br>before you do.</h2>
-      <p>Every run and every error is watched. If something needs attention, it's caught and sorted — often before you even notice. That's the difference: real people keeping an eye on things, not a ticket you have to file and wait on.</p>
-    </div>
-    <div class="feat-media">
-      <div class="tg">
-        <div class="tg-head"><span class="tg-ava"></span><span class="tg-name">Slate Support<small>● online</small></span></div>
-        <div class="tg-body">
-          <div class="bubble">📊 <b>Run (apply)</b><br>✅ loaded: <b>12</b><br>🟡 to review: 2<br>🚫 ignored: 1</div>
-          <div class="bubble">🟢 <b>App opened</b> · v1.0<br><span class="mut">office@northpeakroofing.com</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <h2>Children</h2>
+    <p>Slate is a business tool and is not directed at anyone under 18.</p>
 
-  <div class="narrow statement reveal" style="padding-top: clamp(3rem,7vw,5rem);">
-    <p class="eyebrow" style="text-align:center;">Built to disappear</p>
-    <h2 style="font-size: clamp(1.9rem, 4.5vw, 3rem);">Beautiful in light &amp; dark.<br>Updates itself.</h2>
-    <p>A clean desktop app that stays out of your way. New versions install on their own — nothing to babysit.</p>
-  </div>
-</section>
+    <h2>Changes</h2>
+    <p>If we change this policy we will update the date at the top of this page. If a change materially affects how we handle Google user data, we will tell subscribers by email before it takes effect.</p>
 
-<!-- ===================== HOW IT WORKS (animated) ===================== -->
-<section id="how" class="alt">
-  <div class="wrap reveal">
-    <p class="eyebrow" style="text-align:center;">How it works</p>
-    <h2 style="text-align:center; font-size: clamp(2rem, 4.6vw, 3.2rem);">Set it up once.<br>Then forget about it.</h2>
+    <h2>Contact</h2>
+    <p>EvolveTech Consulting LLC<br>
+    1209 Mountain Road Pl NE Ste R, Albuquerque, NM 87110, United States<br>
+    <a href="mailto:hello@evolvetech-consulting.com">hello@evolvetech-consulting.com</a></p>
+</main>
 
-    <div class="demo" id="demo">
-      <div class="demo-screen">
-        <div class="titlebar">
-          <span class="lights"><i class="r"></i><i class="y"></i><i class="g"></i></span>
-          <span class="tt">Slate</span>
-        </div>
-        <div class="demo-stage">
-          <!-- Scene 1 -->
-          <div class="scene s1 active" data-cap="Connect your inbox once — Slate only ever reads supplier bills.">
-            <div class="s1-field"><span class="env">✉︎</span> office@northpeakroofing.com</div>
-            <div class="s1-google"><span class="s1-g"></span> Continue with Google</div>
-            <div class="s1-check"><span class="tick">✓</span> Inbox connected</div>
-          </div>
-          <!-- Scene 2 -->
-          <div class="scene s2" data-cap="A bill lands. Slate reads it, finds the job, and posts it — payment, PDF and note.">
-            <div class="m-mail">✉︎ New supplier invoice</div>
-            <div class="m-doc">
-              <div class="s2-scan"></div>
-              <div class="dl w2"></div><div class="dl w1"></div><div class="dl w3"></div>
-              <div class="s2-amt">$842.60</div>
-            </div>
-            <div class="m-arrow">↓</div>
-            <div class="m-post">
-              <div class="m-job">Job #218 · Jordan Mills</div>
-              <div class="m-chips">
-                <span class="m-chip c1">💳 Payment ✓</span>
-                <span class="m-chip c2">📎 PDF ✓</span>
-                <span class="m-chip c3">📝 Note ✓</span>
-              </div>
-            </div>
-          </div>
-          <!-- Scene 3 -->
-          <div class="scene s3" data-cap="Not sure? It waits for you. Pick the job, click Resolve.">
-            <div class="s3-card">
-              <div class="ch">Supplier invoice · $943.37</div>
-              <div class="csub">Needs review — pick a job</div>
-              <div class="s3-opt o1"><span class="dot"></span> #519 · Riley Nyquist · 1656 Birch Lane</div>
-              <div class="s3-opt o2"><span class="dot"></span> #491 · Riley Nyquist · 1656 Birch Lane</div>
-              <div class="s3-cursor">👆</div>
-              <div class="s3-row"><span class="tag-btn p s3-resolve">Resolve</span><span class="tag-btn s">Skip</span></div>
-              <div class="s3-done">✓ Loaded to #491</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="demo-cap" id="demoCap">Connect your inbox once — Slate only ever reads supplier bills.</div>
-
-      <div class="demo-nav">
-        <button class="dnav active" data-i="0" style="--dur:3.4s"><span class="dbar"></span>1 · Connect</button>
-        <button class="dnav" data-i="1" style="--dur:5.2s"><span class="dbar"></span>2 · Read &amp; post</button>
-        <button class="dnav" data-i="2" style="--dur:4.4s"><span class="dbar"></span>3 · Review</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== WORKS WITH ===================== -->
-<section class="works">
-  <div class="narrow reveal">
-    <p class="eyebrow" style="text-align:center;">Fits your stack</p>
-    <h2 style="font-size: clamp(1.8rem, 4.2vw, 2.8rem);">Works with what you already use.</h2>
-    <div class="chips">
-      <span class="chip">Mac</span>
-      <span class="chip">Windows</span>
-      <span class="chip">Gmail</span>
-      <span class="chip">Your CRM</span>
-      <span class="chip">Material suppliers</span>
-        <span class="chip">Suppliers with no attachment</span>
-      <span class="chip">Aerial measurement reports</span>
-      <span class="chip">Instant quotes</span>
-      <span class="chip">Card &amp; gift‑card receipts</span>
-    </div>
-    <!-- El estado real va ACÁ, donde se decide la compra. Estaba solo en "Already bought?
-         Install it", que es el final de la página y para quien YA pagó: alguien con
-         JobNimbus habría comprado sin enterarse. -->
-    <p class="sub" style="text-align:center;margin-top:1.4rem;">
-      <b>Today Slate connects to AccuLynx.</b> JobNimbus, JobTread and Buildertrend are next —
-      <a href="#support">tell us which one you use</a> and we'll prioritise it.
-    </p>
-  </div>
-</section>
-
-<!-- ===================== SUPPORT ===================== -->
-<section id="support">
-  <div class="wrap reveal">
-    <p class="eyebrow" style="text-align:center;">Support</p>
-    <h2 style="text-align:center; font-size: clamp(2rem, 4.6vw, 3.2rem);">Help that comes to you.</h2>
-    <p class="lead" style="text-align:center; max-width: 48ch; margin: 1rem auto 0;">Something looks off? One tap sends us the details — logs and all — from right inside Slate. We fix it and reply, without you leaving the app. No tickets, no hold music.</p>
-
-    <div class="support-grid">
-      <div class="tg support-chat">
-        <div class="tg-head"><span class="tg-ava"></span><span class="tg-name">Slate Support<small>● online</small></span></div>
-        <div class="tg-body">
-          <div class="bubble">Job #218 didn't get its PDF attached.<div class="ctx">📎 log attached · v1.0 · office@northpeak…</div></div>
-          <div class="bubble out">On it — that supplier changed their format. Pushed a fix; it'll apply next time you open Slate. ✓</div>
-          <div class="bubble">Legend 🙌</div>
-        </div>
-      </div>
-      <div class="support-tiers">
-        <div class="stier">
-          <h3>Self‑serve</h3>
-          <p>In‑app help and guides. Send a ticket with one tap — the logs and context come attached automatically.</p>
-        </div>
-        <div class="stier hl">
-          <h3>Monitored <span class="tag">Pro</span></h3>
-          <p>We watch every run. If something breaks, we reach out first — often before you've even noticed.</p>
-        </div>
-        <div class="stier">
-          <h3>Managed <span class="tag">Team</span></h3>
-          <p>We handle setup, the tricky reviews, and the upkeep. You barely have to touch it.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PRICING ===================== -->
-<section id="pricing" class="alt">
-  <div class="wrap reveal">
-    <p class="eyebrow" style="text-align:center;">Pricing</p>
-    <h2 style="text-align:center; font-size: clamp(2.1rem, 5vw, 3.4rem);">Pays for itself by the first Friday.</h2>
-    <p class="lead" style="text-align:center; max-width: 46ch; margin: 1rem auto 0;">Simple monthly plans. Cancel anytime. 14‑day free trial on every plan.</p>
-
-    <div class="prices">
-      <div class="plan">
-        <div class="pname">Starter</div>
-        <div class="price">$49<span>/mo</span></div>
-        <div class="pdesc">For the solo shop keeping one inbox under control.</div>
-        <ul>
-          <li><span class="ck">✓</span> 1 invoice inbox</li>
-          <li><span class="ck">✓</span> Up to 150 invoices / mo</li>
-          <li><span class="ck">✓</span> Auto‑match &amp; duplicate guard</li>
-          <li><span class="ck">✓</span> Payment · PDF · note to your CRM</li>
-        </ul>
-        <a class="btn tonal block" href="https://buy.stripe.com/28E7sLdgn43odPpb3r3Je00" target="_blank" rel="noopener">Start free trial</a>
-      </div>
-
-      <div class="plan best">
-        <span class="badge">Most popular</span>
-        <div class="pname">Pro</div>
-        <div class="price">$99<span>/mo</span></div>
-        <div class="pdesc">For the growing crew with invoices coming from everywhere.</div>
-        <ul>
-          <li><span class="ck">✓</span> Up to 5 inboxes</li>
-          <li><span class="ck">✓</span> Unlimited invoices</li>
-          <li><span class="ck">✓</span> Upload &amp; split across jobs</li>
-          <li><span class="ck">✓</span> Aerial reports · quotes · receipts</li>
-          <li><span class="ck">✓</span> Proactive monitoring &amp; support</li>
-        </ul>
-        <a class="btn block" href="https://buy.stripe.com/14AfZhdgn57s3aLb3r3Je01" target="_blank" rel="noopener">Start free trial</a>
-      </div>
-
-      <div class="plan">
-        <div class="pname">Team</div>
-        <div class="price">Let's talk</div>
-        <div class="pdesc">For multi‑branch operations that want it dialed in.</div>
-        <ul>
-          <li><span class="ck">✓</span> Unlimited inboxes</li>
-          <li><span class="ck">✓</span> Guided onboarding &amp; setup</li>
-          <li><span class="ck">✓</span> Priority support</li>
-          <li><span class="ck">✓</span> Custom supplier formats</li>
-        </ul>
-        <a class="btn tonal block" href="https://calendar.app.google/xzdcKHvHxWcXMPLf6" target="_blank" rel="noopener">Contact sales</a>
-      </div>
-    </div>
-  </div>
-    <p class="sub" style="text-align:center;margin-top:1rem;">
-      Works with <b>AccuLynx</b> today. Using a different CRM? <a href="#support">Tell us</a> — it helps us decide what to build next.
-    </p>
-  </section>
-
-<!-- ===================== FINAL CTA ===================== -->
-<section class="final" id="final">
-  <div class="narrow reveal">
-    <h2>Give your office<br>its Fridays back.</h2>
-    <p class="sub">Stop retyping invoices. Start your free trial and watch the first batch post itself.</p>
-    <div class="hero-cta">
-      <a class="btn lg" href="#pricing">Buy Slate</a>
-      <a class="btn ghost lg" href="https://calendar.app.google/xzdcKHvHxWcXMPLf6" target="_blank" rel="noopener">Book a demo ›</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== DOWNLOAD ===================== -->
-<!-- Va DESPUÉS del CTA final y a propósito NO está en el menú: el flujo es comprar y
-     después instalar. Si la descarga compitiera con "Buy Slate", alguien instalaría sin
-     cuenta y se encontraría con que la app le pide una suscripción activa. -->
-<section id="download" class="alt">
-  <div class="narrow reveal" style="text-align:center;">
-    <p class="eyebrow">Download</p>
-    <h2 style="font-size: clamp(1.8rem, 4.2vw, 2.6rem);">Already bought? Install it.</h2>
-    <p class="sub">Slate runs on your own computer, next to the tools you already use. Sign in with the email from your receipt.</p>
-    <!-- El estado real, sin letra chica. Decir "tu CRM" en los títulos y no aclarar cuál
-         funciona hoy sería vender lo que no tenemos: alguien con JobNimbus pagaría y
-         descubriría después que no puede conectarlo. -->
-    <p class="sub" style="margin-top:-.4rem;"><b>Works with AccuLynx today.</b> JobNimbus, JobTread and Buildertrend are coming — tell us which one you use and we'll prioritise it.</p>
-    <div class="dl-row">
-      <!-- Va a /latest/ y no a una versión fija. Estuvo clavado en v0.9.73 unas horas,
-           mientras el instalador de v0.9.74 no llegaba a publicarse, y eso tenía un costo
-           que no se ve: el auto-update de Windows recién existe DESDE la 0.9.74, así que
-           todo el que instalara la 0.9.73 se quedaba sin actualizaciones para siempre. -->
-      <a class="btn lg" id="dlWin" href="https://github.com/lucaskleisinger/acculynx-invoice-releases/releases/latest/download/Slate-Setup.exe">Download for Windows</a>
-      <a class="btn lg" id="dlMac" href="https://github.com/lucaskleisinger/acculynx-invoice-releases/releases/latest/download/Slate-mac-arm64.zip">Download for macOS</a>
-    </div>
-    <p class="dl-note"><b>Windows:</b> it will ask you to confirm before installing — choose <b>More info</b>, then <b>Run anyway</b>. Slate installs just for you and never asks for administrator access.</p>
-    <p class="dl-note"><b>macOS:</b> open the zip and run <b>Install (run me first)</b> once — Slate isn't signed by Apple yet, so macOS needs that step before the first launch.</p>
-    <script>
-      // El sistema del visitante decide cuál botón va primero. El otro NO se esconde:
-      // alguien puede comprar desde una computadora y usar Slate en otra.
-      (function () {
-        var mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || "");
-        var win = document.getElementById("dlWin"), macBtn = document.getElementById("dlMac");
-        if (!win || !macBtn) return;
-        if (mac) win.parentNode.insertBefore(macBtn, win);
-        (mac ? win : macBtn).classList.add("btn-alt");
-      })();
-    </script>
-  </div>
-</section>
-
-<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap">
     <div class="foot-in">
-      <a class="brand" href="#top"><span class="mark"></span> Slate</a>
+      <a class="brand" href="/"><span class="mark"></span> Slate</a>
       <div class="nav-links" style="display:flex; color: var(--faint);">
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#support">Support</a>
-        <a href="#pricing">Pricing</a>
+        <a href="/#how">How it works</a>
+        <a href="/#features">Features</a>
+        <a href="/#support">Support</a>
+        <a href="/#pricing">Pricing</a>
       </div>
-      <span style="display:flex; gap:14px; align-items:center;"><a href="/privacy.html" style="color: var(--faint); text-decoration:none;">Privacy</a><a href="/terms.html" style="color: var(--faint); text-decoration:none;">Terms</a><span>© 2026 Slate</span></span>
+      <span>© 2026 Slate</span>
     </div>
     <p class="disclaimer">Slate is an independent product and is not affiliated with, endorsed by, or sponsored by AccuLynx, JobNimbus, JobTread, Buildertrend or Google. All product names and trademarks are the property of their respective owners. All company names, people, addresses and figures shown on this page are fictional and for illustration only. Prices shown are introductory and subject to change.</p>
   </div>
 </footer>
 
 <script>
-  // Theme toggle (persists; follows system until the user chooses).
+  // Respeta el tema que el visitante eligió en la home.
   (function () {
-    var root = document.documentElement, btn = document.getElementById("themeBtn"), saved = null;
+    var root = document.documentElement, saved = null;
     try { saved = localStorage.getItem("slate-theme"); } catch (e) {}
     function sysDark() { return window.matchMedia("(prefers-color-scheme: dark)").matches; }
-    function eff() { var t = root.getAttribute("data-theme"); return t || (sysDark() ? "dark" : "light"); }
-    function apply(t) { root.setAttribute("data-theme", t); btn.textContent = t === "dark" ? "☾" : "☀"; }
-    apply(saved === "dark" || saved === "light" ? saved : (sysDark() ? "dark" : "light"));
-    btn.addEventListener("click", function () {
-      var next = eff() === "dark" ? "light" : "dark";
-      try { localStorage.setItem("slate-theme", next); } catch (e) {}
-      apply(next);
-    });
-  })();
-
-  // Scroll reveals.
-  (function () {
-    var els = document.querySelectorAll(".reveal, .reveal-tilt");
-    if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-    }, { threshold: 0.18 });
-    els.forEach(function (e) { io.observe(e); });
-  })();
-
-  // How-it-works auto-playing demo.
-  (function () {
-    var demo = document.getElementById("demo");
-    if (!demo) return;
-    var scenes = demo.querySelectorAll(".scene");
-    var navs = demo.querySelectorAll(".dnav");
-    var cap = document.getElementById("demoCap");
-    var durations = [3400, 5200, 4400];
-    var i = 0, timer = null, running = false;
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    function show(n) {
-      i = n;
-      scenes.forEach(function (s, k) { s.classList.toggle("active", k === n); });
-      navs.forEach(function (b, k) { b.classList.toggle("active", k === n); });
-      if (cap) cap.textContent = scenes[n].getAttribute("data-cap") || "";
-    }
-    function schedule() { clearTimeout(timer); if (reduce || !running) return; timer = setTimeout(function () { show((i + 1) % scenes.length); schedule(); }, durations[i]); }
-    function start() { if (running) return; running = true; show(i); schedule(); }
-    function stop() { running = false; clearTimeout(timer); }
-
-    navs.forEach(function (b, k) { b.addEventListener("click", function () { running = true; show(k); schedule(); }); });
-
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) start(); else stop(); });
-      }, { threshold: 0.35 });
-      io.observe(demo);
-    } else { start(); }
-    show(0);
+    root.setAttribute("data-theme", saved === "dark" || saved === "light" ? saved : (sysDark() ? "dark" : "light"));
   })();
 </script>
 
