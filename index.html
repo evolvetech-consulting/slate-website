@@ -410,6 +410,36 @@
   .foot-in { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; }
   .disclaimer { max-width: 66ch; line-height: 1.6; margin-top: 1.2rem; }
 
+  /* ---------- "Learn more" expandable text (native <details>) ---------- */
+  /* El pedido era: titulos cortos, y click para ver mas. <details> nativo en vez de JS a
+     mano: gratis el teclado, el lector de pantalla, y el estado abierto/cerrado. */
+  .more { margin-top: 0.6rem; }
+  .more summary {
+    display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer;
+    font-size: 0.86rem; font-weight: 600; color: var(--accent); list-style: none;
+  }
+  .more summary::-webkit-details-marker { display: none; }
+  .more summary::after { content: "›"; display: inline-block; transition: transform .2s ease; font-size: 1.05em; }
+  .more[open] summary::after { transform: rotate(90deg); }
+  .more[open] summary { margin-bottom: 0.55rem; }
+  .more p { color: var(--muted); font-size: 1.02rem; max-width: 42ch; margin: 0; }
+
+  /* ---------- iPhone feature mockup ---------- */
+  .phone {
+    width: 236px; border-radius: 34px; padding: 10px; background: var(--panel);
+    border: 1px solid var(--line-strong); box-shadow: var(--shadow-soft);
+  }
+  .phone-screen { border-radius: 25px; overflow: hidden; background: var(--bg); border: 1px solid var(--line); }
+  .phone-bar { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.9rem 0.3rem; font-size: 0.7rem; font-weight: 600; color: var(--ink); }
+  .phone-body { padding: 0.3rem 0.85rem 1.1rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .phone-pill { display: inline-flex; align-items: center; gap: 0.4rem; align-self: flex-start; background: color-mix(in srgb, var(--ink) 7%, transparent); border-radius: 980px; padding: 0.3rem 0.7rem 0.3rem 0.3rem; font-size: 0.72rem; font-weight: 600; color: var(--ink); }
+  .phone-pill i { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(150deg, var(--accent), var(--accent-2)); display: block; }
+  .phone-shot { border-radius: 14px; border: 1px solid var(--line); background: var(--panel-2); aspect-ratio: 4/5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--faint); }
+  .phone-shot .cam { width: 46px; height: 46px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; color: #fff; }
+  .phone-shot span { font-size: 0.7rem; font-weight: 600; color: var(--muted); }
+  .phone-toast { display: flex; align-items: center; gap: 0.4rem; background: color-mix(in srgb, var(--good) 14%, transparent); border: 1px solid color-mix(in srgb, var(--good) 32%, transparent); color: var(--good); border-radius: 10px; padding: 0.5rem 0.65rem; font-size: 0.74rem; font-weight: 600; }
+  .beta-tag { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius: 980px; padding: 0.12rem 0.5rem; margin-left: 0.5rem; vertical-align: middle; }
+
   /* reveal on scroll */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity: 1; transform: none; }
@@ -501,7 +531,8 @@
     <div class="feat-copy">
       <p class="eyebrow">Automatic</p>
       <h2>From inbox to your CRM in seconds.</h2>
-      <p>Slate reads each new supplier invoice, pulls the amount, date and PO, finds the matching job, and posts the payment, attaches the PDF, and leaves a note — the same three steps your office does by hand, done the moment the email arrives.</p>
+      <p>Slate reads each new supplier invoice and posts it — payment, PDF and note — the moment it arrives.</p>
+      <details class="more"><summary>Learn more</summary><p>It pulls the amount, date and PO, finds the matching job, and does the same three steps your office does by hand: post the payment, attach the PDF, leave a note.</p></details>
     </div>
     <div class="feat-media">
       <div class="card-mock">
@@ -518,7 +549,8 @@
     <div class="feat-copy">
       <p class="eyebrow">Accurate</p>
       <h2>Reads like your best office manager.</h2>
-      <p>It matches invoices to jobs by number, address, and customer — and remembers what it already posted, so the same bill never gets paid twice. When something looks off, it doesn't guess. It sets it aside for you.</p>
+      <p>It matches invoices to jobs by number, address and customer — and never pays the same bill twice.</p>
+      <details class="more"><summary>Learn more</summary><p>It remembers what it already posted, so a duplicate never slips through. And when something looks off, it doesn't guess — it sets the invoice aside for you instead.</p></details>
     </div>
     <div class="feat-media">
       <div class="card-mock">
@@ -534,7 +566,8 @@
     <div class="feat-copy">
       <p class="eyebrow">No attachment, no problem</p>
       <h2>Some suppliers don't<br>attach anything.</h2>
-      <p>Dumpster rentals, disposal, equipment — plenty of them put the whole bill in the body of the email and never attach a PDF. Most tools look for attachments and miss those entirely. Tell Slate which suppliers do it and it reads those emails too, the same way.</p>
+      <p>Dumpster rentals, disposal, equipment — plenty of suppliers put the whole bill in the email itself, no PDF attached.</p>
+      <details class="more"><summary>Learn more</summary><p>Most tools look for attachments and miss those entirely. Tell Slate which suppliers do it and it reads those emails too, the same way as any other invoice.</p></details>
     </div>
     <div class="feat-media">
       <div class="card-mock">
@@ -551,7 +584,8 @@
     <div class="feat-copy">
       <p class="eyebrow">More than one inbox</p>
       <h2>The office gets some.<br>You get the rest.</h2>
-      <p>Invoices rarely land in one place. Connect every inbox they reach and Slate goes through all of them in a single run — and if the same invoice arrived in two, you review it once, not twice.</p>
+      <p>Invoices rarely land in one place. Connect every inbox they reach and Slate goes through all of them in one run.</p>
+      <details class="more"><summary>Learn more</summary><p>And if the same invoice arrived in two inboxes, you review it once — not twice.</p></details>
     </div>
     <div class="feat-media">
       <div class="card-mock">
@@ -579,6 +613,33 @@
       </div>
     </div>
   </div>
+
+  <div class="wrap feat rev reveal">
+    <div class="feat-copy">
+      <p class="eyebrow">On the job site<span class="beta-tag">iPhone · early access</span></p>
+      <h2>The photo doesn't have to<br>wait for the office.</h2>
+      <p>Point the phone at a check or a pay sheet on the tailgate, and it goes through the same reading and matching as the desktop — right then.</p>
+      <details class="more">
+        <summary>Learn more</summary>
+        <p>Pair it once by scanning a code from Slate on your computer — the connection stays on the phone's own Keychain, nothing typed by hand. From there it's the same engine: the same job matching, the same duplicate guard, filed to the same CRM. It's in a private beta on iPhone right now, ahead of a public release; <a href="#support">tell us</a> if you want in.</p>
+      </details>
+    </div>
+    <div class="feat-media">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-bar"><span>9:41</span><span>▂▄▆ ⌁ 100%</span></div>
+          <div class="phone-body">
+            <span class="phone-pill"><i></i> Palace Roofing</span>
+            <div class="phone-shot">
+              <span class="cam">📷</span>
+              <span>Tap to capture</span>
+            </div>
+            <div class="phone-toast">✓ Filed to #204 · Marcus Reed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ===================== SPOTLIGHT (command bar) ===================== -->
@@ -587,8 +648,8 @@
     <div class="feat-copy">
       <p class="eyebrow">You're in control</p>
       <h2>When it's not sure,<br>you decide.</h2>
-      <p>Pick the job from the list, then choose what to post — payment, PDF, note — with a tap. Splitting one bill across several jobs? Give each its own amount. Slate does exactly what you picked, and nothing you didn't.</p>
-      <p>And when you can't decide yet — you need to ask someone where a bill came from — put it on hold with a note. It waits for you in Review, even after you close Slate.</p>
+      <p>Pick the job from the list, then choose what to post — payment, PDF, note — with a tap.</p>
+      <details class="more"><summary>Learn more</summary><p>Splitting one bill across several jobs? Give each its own amount — Slate does exactly what you picked, and nothing you didn't. And when you can't decide yet, put it on hold with a note; it waits for you in Review, even after you close Slate.</p></details>
     </div>
     <div class="feat-media">
       <div class="card-mock">
@@ -606,7 +667,8 @@
     <div class="feat-copy">
       <p class="eyebrow">For the old ones</p>
       <h2>The invoice with<br>nothing on it.</h2>
-      <p>Old bills often carry no job number and no address — just a date. Turn on your install calendar and Slate looks at which crews were scheduled around that day, and offers those jobs. It never files on a date alone: you always confirm.</p>
+      <p>Old bills often carry no job number and no address — just a date.</p>
+      <details class="more"><summary>Learn more</summary><p>Turn on your install calendar and Slate looks at which crews were scheduled around that day, and offers those jobs. It never files on a date alone — you always confirm.</p></details>
     </div>
     <div class="feat-media">
       <div class="card-mock">
@@ -622,7 +684,8 @@
     <div class="feat-copy">
       <p class="eyebrow">Nothing gets lost</p>
       <h2>A record of<br>everything handled.</h2>
-      <p>Every document Slate touched — loaded, already there, or skipped — is kept in one searchable place. Filter by outcome or date, and export it to CSV when your books need it. No more digging through the inbox to prove what got paid.</p>
+      <p>Every document Slate touched — loaded, already there, or skipped — is kept in one searchable place.</p>
+      <details class="more"><summary>Learn more</summary><p>Filter by outcome or date, and export it to CSV when your books need it. No more digging through the inbox to prove what got paid.</p></details>
     </div>
     <div class="feat-media">
       <div class="hist-mock">
@@ -636,29 +699,15 @@
   </div>
 </section>
 
-<!-- ===================== FEATURE: monitoring + native mac ===================== -->
+<!-- ===================== BUILT TO DISAPPEAR ===================== -->
+<!-- Antes esta seccion arrancaba con un bloque de "Support & monitoring" que duplicaba,
+     con otras palabras, la seccion #support de mas abajo — la real, la que esta en el nav
+     y en el footer. Se saca esa mitad y queda esta, que no se solapa con nada. -->
 <section>
-  <div class="wrap feat rev reveal">
-    <div class="feat-copy">
-      <p class="eyebrow">Support &amp; monitoring</p>
-      <h2>Support that spots it<br>before you do.</h2>
-      <p>Every run and every error is watched. If something needs attention, it's caught and sorted — often before you even notice. That's the difference: real people keeping an eye on things, not a ticket you have to file and wait on.</p>
-    </div>
-    <div class="feat-media">
-      <div class="tg">
-        <div class="tg-head"><span class="tg-ava"></span><span class="tg-name">Slate Support<small>● online</small></span></div>
-        <div class="tg-body">
-          <div class="bubble">📊 <b>Run (apply)</b><br>✅ loaded: <b>12</b><br>🟡 to review: 2<br>🚫 ignored: 1</div>
-          <div class="bubble">🟢 <b>App opened</b> · v1.0<br><span class="mut">office@northpeakroofing.com</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="narrow statement reveal" style="padding-top: clamp(3rem,7vw,5rem);">
+  <div class="narrow statement reveal">
     <p class="eyebrow" style="text-align:center;">Built to disappear</p>
-    <h2 style="font-size: clamp(1.9rem, 4.5vw, 3rem);">Beautiful in light &amp; dark.<br>Updates itself.</h2>
-    <p>A clean desktop app that stays out of your way. New versions install on their own — nothing to babysit.</p>
+    <h2 style="font-size: clamp(1.9rem, 4.5vw, 3rem);">Signed, notarized, and updates itself.</h2>
+    <p>A clean desktop app that stays out of your way — light or dark, matching your system. Every release is signed and notarized by Apple, so macOS opens it without a single warning. New versions install on their own — nothing to babysit.</p>
   </div>
 </section>
 
