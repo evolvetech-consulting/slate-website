@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="What the Slate for Gmail browser extension reads, where it goes, and what it never does.">
+<meta name="theme-color" content="#08090b">
+<title>Slate for Gmail — Extension Privacy Policy</title>
+<style>
+  /* ============================================================
+     Slate — landing page. System font (SF Pro on Apple devices).
+     Token-based light/dark; dark is the default cinematic look.
+     ============================================================ */
+  :root {
+    color-scheme: dark light;
+    --bg: #08090b;
+    --bg-alt: #101217;
+    --panel: #16191f;
+    --panel-2: #1d212a;
+    --ink: #f4f6f9;
+    --muted: #99a2ad;
+    --faint: #6b7480;
+    --line: rgba(255, 255, 255, 0.10);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --accent: #5b93f3;
+    --accent-2: #9cc0ff;
+    --accent-ink: #ffffff;
+    --good: #34d364;
+    --warn: #ffd60a;
+    --bad: #ff5a4d;
+    --glow: radial-gradient(60% 60% at 50% 0%, rgba(91, 147, 243, 0.28), transparent 70%);
+    --shadow: 0 50px 140px rgba(0, 0, 0, 0.65);
+    --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fbfbfd; --bg-alt: #eef1f5; --panel: #ffffff; --panel-2: #f4f6f9;
+      --ink: #15181d; --muted: #5a636e; --faint: #8a929c;
+      --line: rgba(0,0,0,0.10); --line-strong: rgba(0,0,0,0.16);
+      --accent: #0a67dd; --accent-2: #2f83f5; --accent-ink: #ffffff;
+      --good: #1e9e4a; --warn: #c98a00; --bad: #e0392b;
+      --glow: radial-gradient(60% 60% at 50% 0%, rgba(10,103,221,0.14), transparent 70%);
+      --shadow: 0 50px 120px rgba(20,30,55,0.20); --shadow-soft: 0 24px 55px rgba(20,30,55,0.14);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #08090b; --bg-alt: #101217; --panel: #16191f; --panel-2: #1d212a;
+    --ink: #f4f6f9; --muted: #99a2ad; --faint: #6b7480;
+    --line: rgba(255,255,255,0.10); --line-strong: rgba(255,255,255,0.16);
+    --accent: #5b93f3; --accent-2: #9cc0ff; --accent-ink: #ffffff;
+    --good: #34d364; --warn: #ffd60a; --bad: #ff5a4d;
+    --glow: radial-gradient(60% 60% at 50% 0%, rgba(91,147,243,0.28), transparent 70%);
+    --shadow: 0 50px 140px rgba(0,0,0,0.65); --shadow-soft: 0 24px 60px rgba(0,0,0,0.45);
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #fbfbfd; --bg-alt: #eef1f5; --panel: #ffffff; --panel-2: #f4f6f9;
+    --ink: #15181d; --muted: #5a636e; --faint: #8a929c;
+    --line: rgba(0,0,0,0.10); --line-strong: rgba(0,0,0,0.16);
+    --accent: #0a67dd; --accent-2: #2f83f5; --accent-ink: #ffffff;
+    --good: #1e9e4a; --warn: #c98a00; --bad: #e0392b;
+    --glow: radial-gradient(60% 60% at 50% 0%, rgba(10,103,221,0.14), transparent 70%);
+    --shadow: 0 50px 120px rgba(20,30,55,0.20); --shadow-soft: 0 24px 55px rgba(20,30,55,0.14);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    font-family: -apple-system, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased;
+    line-height: 1.5; overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: color-mix(in srgb, var(--accent) 40%, transparent); }
+  .wrap { width: min(1080px, 92vw); margin-inline: auto; }
+  .mark {
+    width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center;
+    background: linear-gradient(150deg, var(--accent), var(--accent-2)); box-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .mark::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: #fff; opacity: 0.95; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* Prosa legal: ancho de lectura acotado — a todo el ancho la línea es ilegible. */
+  .legal { max-width: 720px; margin: 0 auto; padding: 60px 22px 90px; }
+  .legal h1 { font-size: clamp(1.9rem, 4.5vw, 2.5rem); line-height: 1.15; margin: 0 0 8px; color: var(--ink); }
+  .legal .updated { color: var(--faint); font-size: 0.9rem; margin: 0 0 40px; }
+  .legal h2 { font-size: 1.15rem; color: var(--ink); margin: 40px 0 12px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .legal h3 { font-size: 1rem; color: var(--ink); margin: 26px 0 8px; }
+  .legal p, .legal li { color: var(--muted); line-height: 1.68; }
+  .legal p { margin: 0 0 14px; }
+  .legal ul { margin: 0 0 14px; padding-left: 22px; }
+  .legal li { margin-bottom: 9px; }
+  .legal a { color: var(--accent); }
+  .legal code { background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; font-size: 0.9em; }
+  .legal strong { color: var(--ink); }
+  .legal .clave { background: var(--panel); border: 1px solid var(--line-strong); border-radius: 12px; padding: 20px 22px; margin: 0 0 22px; }
+  .legal .clave p:last-child { margin-bottom: 0; }
+  .legal-top { border-bottom: 1px solid var(--line); }
+  .legal-top .wrap { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; }
+  .legal-top a.brand { display: flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; font-weight: 650; }
+  footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3.5rem; color: var(--faint); font-size: 0.82rem; }
+  .foot-in { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; }
+  .disclaimer { max-width: 66ch; line-height: 1.6; margin-top: 1.2rem; }
+  .nav-links { display: flex; gap: 1.9rem; font-size: 0.86rem; color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="legal-top">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="mark"></span> Slate</a>
+    <a href="/" style="color: var(--muted); text-decoration: none;">Back to site</a>
+  </div>
+</div>
+
+<main class="legal">
+<h1>Slate for Gmail — Extension Privacy Policy</h1>
+    <p class="updated">Last updated: 15 September 2026</p>
+
+    <p>This policy covers the <strong>Slate for Gmail</strong> browser extension specifically — a small, separate piece of software from the Slate desktop app. It is not the same document as <a href="/privacy.html">Slate&rsquo;s main privacy policy</a>, which covers the desktop and phone apps and their use of the Gmail API; the extension does not use the Gmail API at all, so a shorter, different policy applies here.</p>
+
+    <h2>What the extension is for</h2>
+    <p>The extension lets someone who already uses Slate on their computer process a single email they have open in Gmail, without switching windows. It requires Slate to be installed and running on the same computer — it does nothing on its own.</p>
+
+    <h2>What it reads</h2>
+    <p>When you click the extension&rsquo;s icon, a small script running on the Gmail page you already have open looks for the identifier of the email conversation currently on screen &mdash; the same kind of identifier that already appears in Gmail&rsquo;s own web address. It does not read the subject, sender, body or attachments of any email, and it does not read your inbox as a whole. It only runs on <code>mail.google.com</code>, and only acts when you click the icon.</p>
+    <p>The extension does not sign in to Google, does not request any Gmail API scope, and does not use OAuth. It has no access to your mailbox beyond what is visible in the page you already have open.</p>
+
+    <h2>Where that identifier goes</h2>
+    <p>It is sent to exactly one place: <strong>a small server that Slate runs on your own computer</strong> (<code>127.0.0.1</code>, sometimes called &ldquo;localhost&rdquo;), reachable only from that same machine &mdash; never over the network, never to the internet. Slate then does the actual reading and filing, exactly as if you had clicked &ldquo;Process&rdquo; inside the app itself. From there, handling that one email is covered by <a href="/privacy.html">Slate&rsquo;s main privacy policy</a>.</p>
+    <p>The extension itself does not operate any server, does not use analytics or tracking of any kind, and does not send anything to EvolveTech Consulting LLC or to any third party.</p>
+
+    <h2>What it stores</h2>
+    <p>A single pairing code, generated by Slate and entered once, so the extension can prove to Slate&rsquo;s local server that the request really comes from this extension. It is stored in your browser&rsquo;s own extension storage (<code>chrome.storage.sync</code>), which Chrome may sync across your own signed-in browser profiles. It never leaves your control, and removing the extension removes it.</p>
+
+    <h2>Permissions, and why</h2>
+    <ul>
+      <li><strong>Read the active tab / run on mail.google.com</strong> &mdash; to find the identifier described above, only when you click the icon.</li>
+      <li><strong>Talk to <code>127.0.0.1</code></strong> &mdash; to reach the Slate app running on your own computer. No other address is contacted.</li>
+      <li><strong>Storage</strong> &mdash; to remember the pairing code, so you do not paste it in again every time.</li>
+    </ul>
+
+    <h2>Children</h2>
+    <p>This extension is a business tool and is not directed at anyone under 18.</p>
+
+    <h2>Changes</h2>
+    <p>If we change this policy we will update the date at the top of this page.</p>
+
+    <h2>Contact</h2>
+    <p>EvolveTech Consulting LLC<br>
+    1209 Mountain Road Pl NE Ste R, Albuquerque, NM 87110, United States<br>
+    <a href="mailto:hello@evolvetech-consulting.com">hello@evolvetech-consulting.com</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <a class="brand" href="/"><span class="mark"></span> Slate</a>
+      <div class="nav-links" style="display:flex; color: var(--faint);">
+        <a href="/#how">How it works</a>
+        <a href="/#features">Features</a>
+        <a href="/#support">Support</a>
+        <a href="/#pricing">Pricing</a>
+      </div>
+      <span>© 2026 Slate</span>
+    </div>
+    <p class="disclaimer">Slate is an independent product and is not affiliated with, endorsed by, or sponsored by AccuLynx, JobNimbus, JobTread, Buildertrend or Google. All product names and trademarks are the property of their respective owners.</p>
+  </div>
+</footer>
+
+<script>
+  // Respeta el tema que el visitante eligió en la home.
+  (function () {
+    var root = document.documentElement, saved = null;
+    try { saved = localStorage.getItem("slate-theme"); } catch (e) {}
+    function sysDark() { return window.matchMedia("(prefers-color-scheme: dark)").matches; }
+    root.setAttribute("data-theme", saved === "dark" || saved === "light" ? saved : (sysDark() ? "dark" : "light"));
+  })();
+</script>
+
+</body>
+</html>
